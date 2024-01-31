@@ -7,13 +7,14 @@
   "scripts": {
     "build": "npx tsc --build --clean && npx tsc",
     "start": "node ./backend/dist/server.js",
-    "dev": "npx tsc & npx nodemon ./backend/dist/server.js",
+    "dev": "npx tsc -w & npx nodemon ./backend/dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/generative-ai": "^0.1.3",
     "@sashido/teachablemachine-node": "^1.2.2",
     "dotenv": "^16.4.1",
     "express": "^4.18.2"

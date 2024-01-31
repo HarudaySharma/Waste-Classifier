@@ -7,7 +7,7 @@ export async function loadModel():Promise<Model> {
         console.log("loading Model...");
         try {
             model = new TeachableMachine({
-                modelUrl: process.env.TEACHABLEMACHINEURL
+                modelUrl: process.env.TEACHABLEMACHINE_URL
             });
             resolve(model);
             return;
