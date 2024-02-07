@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}
+img {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    outline: 2px solid black;
+    height: 14em;
+    width: 14em;
+}
+
+.heading {
+    width: fit-content;
+    margin: 0 auto;
+    background-color: cyan;
+}
+
+.information {
+    background-color: lightsalmon;
+    padding: 4px;
+    margin: 2px;
+    width: 50%;
+    margin: 0 auto;
+    padding: 14px;
+    text-align: justify;
+}

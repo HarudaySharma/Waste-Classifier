@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import cors from "cors"
 import {config} from 'dotenv';
 import initialRoute from "./routes/initial.route.js"
 import { loadModel } from './utils/lgModel.js';
@@ -15,6 +16,7 @@ app.listen(PORT, () => {
     loadModel();
 })
 
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/' , initialRoute);

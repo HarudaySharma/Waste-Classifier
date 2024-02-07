@@ -3,6 +3,6 @@ import { initialController } from "../controllers/initial.controller.js";
 
 const router = Router();
 
-router.use('/', initialController);
+router.post('/', initialController);
 
 export default router;

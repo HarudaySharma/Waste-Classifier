@@ -4,13 +4,15 @@ import { Prediction } from "../types/MLModelTypes.js";
 import { getModel } from "../utils/lgModel.js";
 import askGemini from "../utils/geminiText.js";
 import generatePrompt from "../utils/generatePrompt.js";
+import createResponseObj from "../utils/createResponseObj.js";
 
 export const initialController = async (req: Request, res: Response) => {
+    const {imageURL} = req.body;
     try {
         const model = getModel();
         console.log(await model.checkModel("model is loaded"));
         const predictions = await model.classify({
-            imageUrl: "https://firebasestorage.googleapis.com/v0/b/discusssion-app.appspot.com/o/bottle.jpeg?alt=media&token=2ef3ad8f-73ce-4cb0-b1f1-5d31e0092909",
+            imageUrl: imageURL,
         });
         predictions.forEach((obj: Prediction) => {
             console.log(`${obj.class}: ${obj.score * 100}`);
@@ -21,7 +23,7 @@ export const initialController = async (req: Request, res: Response) => {
         })
         console.log(highestScore);
         const message = await askGemini(generatePrompt(highestScore.class));
-        res.status(200).json(message);
+        res.status(200).json(createResponseObj(highestScore.class, imageURL, message));
     }
     catch (err) {
         console.log("error in controller");
