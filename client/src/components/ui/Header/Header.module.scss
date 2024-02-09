@@ -1,1 +1,39 @@
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #0e0e0e;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* White shadow */
+}
+
+.logoContainer {
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+}
+
+.navButtons {
+    display: flex;
+}
+
+.navButton {
+    background-color: #0e0e0e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.icon {
+    width: 30px;
+    height: auto;
+    border: none;
+}

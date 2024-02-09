@@ -1,10 +1,11 @@
-import "./Home.module.scss"
+import styles from  "./Home.module.scss"
+import Header from "../../components/ui/Header/Header";
 
 function Home() {
     return (
-        <main>
-           <h1>Home</h1>
-        </main >
+        <div>
+            <Header/>
+        </div>
     )
 }
 export default Home;
