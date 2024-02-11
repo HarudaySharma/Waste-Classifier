@@ -1,8 +1,8 @@
-import React, { ChangeEvent, ChangeEventHandler, FC, FormEventHandler, SyntheticEvent, useEffect, useState } from "react";
+import {FC, useEffect, useState } from "react";
 import DropContainer from "../ui/DropContainer/DropContainer";
 import handleImageUpload from "../../utils/handleImageUpload";
 import { StorageError } from "firebase/storage";
-import "./ImageUpload.module.scss"
+import styles from "./ImageUpload.module.scss"
 import fetchImageInfo from "../../utils/fetchImageInfo";
 import { ResponseObj } from "../../types";
 
@@ -61,11 +61,11 @@ const ImageUpload: FC<ImageUploadProps> = ({ liftState }) => {
         const uploadImg = async () => {
             if (!image) return;
 
-           // const reader = new FileReader();
-           // reader.onload = () => {
-           //     setImagePreview(reader.result);
-           // }
-           // reader.readAsDataURL(image);
+            // const reader = new FileReader();
+            // reader.onload = () => {
+            //     setImagePreview(reader.result);
+            // }
+            // reader.readAsDataURL(image);
 
             try {
                 setLoading(true);
@@ -80,11 +80,11 @@ const ImageUpload: FC<ImageUploadProps> = ({ liftState }) => {
     }, [image, setImage]);
 
     return (
-        <div className="container">
-           {loading && <p>loading ....</p>}
+        <div className={ styles.container }>
+            {loading && <p>loading ....</p>}
             <DropContainer
                 heading="Select a file"
-                subheading="Drag n Drop files"
+                subheading={`Drag and Drop Files here` }
                 active
                 onImageUpload={(e) => setImage(e.target.files[0])}
                 onImageDrop={(e) => setImage(e.dataTransfer.files[0])}
