@@ -83,8 +83,8 @@ const ImageUpload: FC<ImageUploadProps> = ({ liftState }) => {
         <div className="container">
            {loading && <p>loading ....</p>}
             <DropContainer
-                heading="Drop your Image"
-                subheading="open file explorer"
+                heading="Select a file"
+                subheading="Drag n Drop files"
                 active
                 onImageUpload={(e) => setImage(e.target.files[0])}
                 onImageDrop={(e) => setImage(e.dataTransfer.files[0])}

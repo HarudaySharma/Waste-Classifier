@@ -14,9 +14,8 @@ const handleImageUpload = async ({
     setImageURL,
     setImageUploadError,
     setImageUploadPercent,
-}: handleImageUploadProps
-
-): Promise<void> => {
+}: handleImageUploadProps):
+    Promise<void> => {
 
     console.log(image);
 

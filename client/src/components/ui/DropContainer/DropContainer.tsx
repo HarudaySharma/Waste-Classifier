@@ -1,4 +1,4 @@
-import {useRef} from 'react'
+import { useRef } from 'react'
 import styles from "./DropContainer.module.scss"
 
 interface DropContainerProps {
@@ -48,10 +48,11 @@ const DropContainer: React.FC<DropContainerProps> = ({
                 onDrop={handleDrop}
                 onClick={() => fileInputRef.current.click()}
             >
-                <label className={styles.label1}> {heading} </label>
-                <label className={styles.label2}> {subheading} </label>
-                <UploadIcon className="upload-icon"
-                />
+                <div>
+                    <span className={styles.label1}>{heading}</span>
+                    <UploadIcon className="upload-icon" />
+                </div>
+                <span className={styles.label2}>{subheading}</span>
                 <input
                     ref={fileInputRef}
                     type="file"
