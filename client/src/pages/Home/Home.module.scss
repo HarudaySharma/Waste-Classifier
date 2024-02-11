@@ -1,0 +1,60 @@
+.container {
+    background-color: #0e0e0e;
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.bodyContent {
+    display: flex;
+}
+
+.leftContent {
+    padding: 20px;
+}
+
+.heading1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.heading2 {
+    font-size: 46px;
+    margin-bottom: 20px;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.iconButton {
+    background-color: #0e0e0e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 20px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.square {
+    position: relative;
+    height: 530px;
+    width: 530px;
+    
+}
+
+.bigImage {
+    position: relative;
+    height: 400px;
+    width: 400px;
+    left: 20%;
+    top: 20%;    
+}
