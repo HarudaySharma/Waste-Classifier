@@ -7,7 +7,6 @@ function MainPage() {
     return (
         <main>
             <Header />
-            <h1 className={styles.heading}>Image Details</h1>
             <WasteClassificationContainer />
         </main>
     )

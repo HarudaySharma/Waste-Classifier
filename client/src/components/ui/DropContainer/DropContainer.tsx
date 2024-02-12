@@ -48,11 +48,12 @@ const DropContainer: React.FC<DropContainerProps> = ({
                 onDrop={handleDrop}
                 onClick={() => fileInputRef.current.click()}
             >
-                <div>
+                <div className={styles.upBtn}> 
+                <UploadIcon className="upload-icon" />
                     <span className={styles.label1}>{heading}</span>
-                    <UploadIcon className="upload-icon" />
                 </div>
-                <span className={styles.label2}>{subheading}</span>
+                <div className={styles.or}> or </div>
+                <span className={styles.subHeading}>{subheading}</span>
                 <input
                     ref={fileInputRef}
                     type="file"
