@@ -3,7 +3,7 @@ import Header from "../../components/ui/Header/Header";
 import Button from "../../components/ui/Button/Button";
 import icon1 from '../../assets/vector.png'
 import icon2 from '../../assets/upload.png'
-import rightImage from '../../assets/homeImage.jpg'
+import rightImage from '../../assets/homeImage2.jpg'
 import { useNavigate } from "react-router-dom";
 
 

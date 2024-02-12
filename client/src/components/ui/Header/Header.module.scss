@@ -12,11 +12,20 @@
 .logoContainer {
     margin-right: 10px;
     margin-left: 20px;
+    border: none;
+    border-radius: 25px;
+    &:hover {
+        box-shadow: 0 0 40px rgb(101, 255, 128, 0.8);
+        border: none;
+    }
 }
 
 .logo {
     width: 50px;
     height: auto;
+    border: none;
+    outline: none;
+    background: transparent;
 }
 
 .navButtons {
