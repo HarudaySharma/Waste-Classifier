@@ -38,7 +38,10 @@
         top: -100px;
         font-size: 64px;
         font-weight: 600;
-    }
+        &:hover {
+            text-shadow: 0 0 10px rgb(255, 255, 255, 0.8);
+
+        }    }
 
     .heading2 {
         position: relative;
@@ -53,6 +56,10 @@
         -moz-text-fill-color: transparent;
         -moz-background-clip: text;
         -webkit-background-clip: text;
+        &:hover {
+            text-shadow: 0 0 10px rgb(101, 255, 128, 0.8);
+
+        }
     }
 
     .buttonContainer {
@@ -63,37 +70,49 @@
     }
 
     .iconButton {
-        width: 163px;
-        height: 60px;
+        width: fit-content;
+        height: 68px;
+        padding: 12px;
         font-family: 'Inter', sans-serif;
         background-color: #0e0e0e;
         color: white;
         border: none;
+        border-radius:15px;
         cursor: pointer;
         display: flex;
         gap: 1em;
         font-size: 1.5em;
         position: relative;
+        margin-bottom: 30px;
+        &:hover {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glow effect on hover */
+          }
 
         img {
             width: 70px;
             height: 60px;
             border: none;
+            &:hover span {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* White shadow on hover for the image */
+              }
         }
 
         img.scanIcon {
             position: relative;
+            top:-10px;
         }
 
         img.uploadIcon {
             position: relative;
             left: 6px;
+            top:-10px;
         }
 
         span {
             height: fit-content;
             position: relative;
-            top: 28%;
+            top: 26%;
+            margin-top: 3px;
         }
     }
 }
@@ -110,6 +129,9 @@
         right: 20%;
         z-index: 0;
         border: 2px solid white;
+        &:hover {
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.8);
+          }
     }
 
     img.rightImage {
