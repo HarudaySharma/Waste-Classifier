@@ -9,9 +9,9 @@ interface ImageInfoProps {
 const ImageInfo: React.FC<ImageInfoProps> = ({ imageData }) => {
     return (
         imageData &&
-        <div className={styles.container}>
-            <img src={imageData.imageURL} />
-            <div>
+        <div className={styles.imageContainer}>
+            <img className={styles.image} src={imageData.imageURL} />
+            <div className={styles.info}>
                 <h3 className={styles.heading}>
                     {imageData.heading}
                 </h3>

@@ -53,7 +53,7 @@ const DropContainer: React.FC<DropContainerProps> = ({
                     <span className={styles.label1}>{heading}</span>
                 </div>
                 <div className={styles.or}> or </div>
-                <span className={styles.subHeading}>{subheading}</span>
+                <div className={styles.subHeading}>{subheading}</div>
                 <input
                     ref={fileInputRef}
                     type="file"
