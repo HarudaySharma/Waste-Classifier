@@ -1,8 +1,8 @@
-const createResponseObj = (wasteType: string, imageURL: string, information: string) => {
+const createResponseObj = (wasteType: string, imageUrl: string, info: string) => {
     return {
-        heading: `${wasteType}: Impact on Nature`,
-        imageURL: imageURL,
-        information: information,
+        wasteType: `${wasteType}: Impact on Nature`,
+        imageUrl,
+        info,
     }
 }
 export default createResponseObj;

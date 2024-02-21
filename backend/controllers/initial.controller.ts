@@ -7,12 +7,12 @@ import generatePrompt from "../utils/generatePrompt.js";
 import createResponseObj from "../utils/createResponseObj.js";
 
 export const initialController = async (req: Request, res: Response) => {
-    const {imageURL} = req.body;
+    const {imageUrl} = req.body;
     try {
         const model = getModel();
         console.log(await model.checkModel("model is loaded"));
         const predictions = await model.classify({
-            imageUrl: imageURL,
+            imageUrl,
         });
         predictions.forEach((obj: Prediction) => {
             console.log(`${obj.class}: ${obj.score * 100}`);
@@ -23,7 +23,7 @@ export const initialController = async (req: Request, res: Response) => {
         })
         console.log(highestScore);
         const message = await askGemini(generatePrompt(highestScore.class));
-        res.status(200).json(createResponseObj(highestScore.class, imageURL, message));
+        res.status(200).json(createResponseObj(highestScore.class, imageUrl, message));
     }
     catch (err) {
         console.log("error in controller");

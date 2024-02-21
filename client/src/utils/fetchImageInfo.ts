@@ -6,7 +6,7 @@ type FetchImageInfoParams = {
     setImageObj: React.Dispatch<React.SetStateAction<ResponseObj | undefined>>;
 }
 
-const fetchImageInfo = async ({ imageURL, setImageObj }: FetchImageInfoParams): Promise<void> => {
+const fillImageDetails = async ({ imageURL, setImageObj }: FetchImageInfoParams): Promise<void> => {
     try {
         const res = await fetch('/api/', {
             method: 'POST',
@@ -29,4 +29,4 @@ const fetchImageInfo = async ({ imageURL, setImageObj }: FetchImageInfoParams): 
     }
 }
 
-export default fetchImageInfo;
+export default fillImageDetails;

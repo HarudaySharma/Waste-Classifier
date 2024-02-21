@@ -1,90 +1,31 @@
-import {FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DropContainer from "../ui/DropContainer/DropContainer";
-import handleImageUpload from "../../utils/handleImageUpload";
-import { StorageError } from "firebase/storage";
 import styles from "./ImageUpload.module.scss"
-import fetchImageInfo from "../../utils/fetchImageInfo";
-import { ResponseObj } from "../../types";
+import useUploadImage from "../../hooks/useUploadImage";
+import useFetchImageDetails from "../../hooks/useFetchImageDetails";
 
-interface ImageUploadProps {
-    liftState: (state: ResponseObj) => void;
-}
 
-/*
- * send firebase the Image
- * handleImageUpload will return ImageUrl
- */
-const ImageUpload: FC<ImageUploadProps> = ({ liftState }) => {
-    const [image, setImage] = useState<File | undefined | null>(undefined);
+const ImageUpload = () => {
+
     //const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(null);
-    const [imageURL, setImageURL] = useState<string | undefined>(undefined);
-    const [imageObj, setImageObj] = useState<ResponseObj | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(false);
     //const [imageUploadPercent, setImageUploadPercent] = useState(0);
     //const [imageUploadError, setImageUploadError] = useState<StorageError | undefined>(undefined);
 
+    const [url, setImage] = useUploadImage();
+    const [setImageUrl] = useFetchImageDetails(url);
 
     useEffect(() => {
-        if (!imageObj) return;
+        setImageUrl(url);
+    }, [url, setImageUrl]);
 
-        setImageURL(undefined);
-        setImageObj(undefined);
-
-        console.log(imageObj);
-
-        liftState(imageObj);
-
-    }, [imageObj, setImageObj, liftState])
-
-    useEffect(() => {
-        if (!imageURL) return;
-
-        console.log(imageURL);
-        const getImgObj = async () => {
-            console.log("here");
-            try {
-                await fetchImageInfo({ imageURL, setImageObj });
-            }
-            catch (err) {
-                console.log(err);
-            }
-            finally {
-                setLoading(false);
-            }
-        }
-
-        getImgObj();
-    }, [imageURL, setImageURL])
-
-    useEffect(() => {
-
-        const uploadImg = async () => {
-            if (!image) return;
-
-            // const reader = new FileReader();
-            // reader.onload = () => {
-            //     setImagePreview(reader.result);
-            // }
-            // reader.readAsDataURL(image);
-
-            try {
-                setLoading(true);
-                await handleImageUpload({ image, setImageURL });
-            }
-            catch (err) {
-                console.log(err);
-            }
-        }
-        uploadImg();
-
-    }, [image, setImage]);
 
     return (
-        <div className={ styles.container }>
+        <div className={styles.container}>
             {loading && <p>loading ....</p>}
             <DropContainer
                 heading="Select a file"
-                subheading={`Drag and Drop Files here` }
+                subheading={`Drag and Drop Files here`}
                 active
                 onImageUpload={(e) => setImage(e.target.files[0])}
                 onImageDrop={(e) => setImage(e.dataTransfer.files[0])}

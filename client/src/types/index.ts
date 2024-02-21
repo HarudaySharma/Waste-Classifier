@@ -1,5 +1,5 @@
-export type ResponseObj = {
-    imageURL: string;
-    heading: string;
-    information: string;
+export type ImageResponseObj = {
+    imageUrl: string;
+    wasteType: string;
+    info: string;
 }

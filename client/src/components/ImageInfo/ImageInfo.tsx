@@ -1,25 +1,27 @@
-import React from "react"
-import { ResponseObj } from "../../types";
-import  styles from "./ImageInfo.module.scss"
+import styles from "./ImageInfo.module.scss"
+import { ImageSliceInitial } from "../../redux/slices/imageSlice";
+import { useAppSelector } from "../../hooks";
 
-interface ImageInfoProps {
-    imageData: ResponseObj | undefined;
-}
 
-const ImageInfo: React.FC<ImageInfoProps> = ({ imageData }) => {
+const ImageInfo = () => {
+    const image = useAppSelector(state => state.image) as ImageSliceInitial;
+
     return (
-        imageData &&
-        <div className={styles.imageContainer}>
-            <img className={styles.image} src={imageData.imageURL} />
-            <div className={styles.info}>
-                <h3 className={styles.heading}>
-                    {imageData.heading}
-                </h3>
-                <p className={styles.information}>
-                    {imageData.information}
-                </p>
-            </div>
-        </div>
+        image.loading ? "please wait"
+            : image.error ?
+                <pre> {image.error} </pre>
+                :
+                <div className={styles.imageContainer}>
+                    <img className={styles.image} src={image.imageUrl!} />
+                    <div className={styles.info}>
+                        <h3 className={styles.heading}>
+                            {image.wasteType}
+                        </h3>
+                        <p className={styles.information}>
+                            {image.info}
+                        </p>
+                    </div>
+                </div>
     )
 }
 
