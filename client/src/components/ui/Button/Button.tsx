@@ -2,8 +2,7 @@ import React, { FC } from 'react'
 
 interface ButtonProps {
     className?: string;
-    onClickHandler?: React.MouseEventHandler<HTMLButtonElement>
-    size?: string;
+    onClickHandler?: React.ChangeEvent<HTMLButtonElement>;
     variant?: string
     children?: React.ReactNode;
 }

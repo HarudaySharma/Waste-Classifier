@@ -11,13 +11,13 @@ import { useAppDispatch, useAppSelector } from ".";
     * url of the image(as a state)
     * ImageSetter: to upload a new Image
 */
-const useUploadImage = (imageFile?: File): [string | undefined, React.Dispatch<React.SetStateAction<File | undefined>>]  => {
+const useUploadImage = (imageFile?: File): [string | undefined, React.Dispatch<React.SetStateAction<File | null | undefined>>]  => {
     const dispatch = useAppDispatch();
     const { imageUrl } = useAppSelector(state => state.image);
-    const [image, setImage] = useState(imageFile);
+    const [image, setImage] = useState<File | null | undefined>(imageFile);
 
     useEffect(() => {
-        async function uploadImg(image: File | undefined) {
+        async function uploadImg(image: File | null | undefined) {
             if (!image) return;
             try {
                 dispatch(imageProcessingStart());
