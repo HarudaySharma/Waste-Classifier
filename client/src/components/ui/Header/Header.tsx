@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
     const navigate = useNavigate();
     return (
-        <nav className={styles.navbar}>
+        <nav className={`${styles.navbar} header__nav`}>
             <div className={styles.logoContainer}>
                 <img src={logo} alt="logo" className={styles.logo} />
             </div>
