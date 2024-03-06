@@ -1,14 +1,12 @@
-@use '../utils' as u;
+@use '../../utils' as u;
+@use '../../utils/functions' as f;
 
 /*styles.bodyContent*/
 .home {
     display: grid;
     grid-template-rows: auto auto;
     justify-content: center;
-    gap: 4em;
-@include u.breakpoint-up(medium) {
-        gap: 8em;
-    }
+    gap: f.rem(140);
 
     @include u.breakpoint-up(large) {
         display: flex;
@@ -18,18 +16,19 @@
     &__main {
         width: calc(100vw - 16px);
         margin-inline: auto auto;
-        font-family: u.$jost-font;
-
+        font-family: u.$font-jost;
+        align-self: center;
+        justify-self: center;
 
         &__column1 {
             display: flex;
             flex-flow: column wrap;
-            gap: 12px;
+            gap: f.rem(12);
             align-items: center;
 
             &__heading1 {
                 font-weight: 600;
-                font-size: 3rem;
+                font-size: var(--font-xl);
 
                 &:hover {
                     text-shadow: 0 0 10px rgb(255, 255, 255, 0.8);
@@ -37,11 +36,11 @@
             }
 
             &__heading2 {
-                font-size: 3.8rem;
+                font-size: var(--font-xxl);
                 font-weight: 700;
                 background: linear-gradient(180.71deg, #65FF80 0.61%, #0E0E0E 164.95%);
                 background-size: 100%;
-                margin-bottom: 20px;
+                margin-bottom: f.rem(20);
                 background-clip: text;
                 -webkit-text-fill-color: transparent;
                 -moz-text-fill-color: transparent;
@@ -58,21 +57,21 @@
                 display: flex;
                 flex-flow: column wrap;
                 align-items: start;
-                gap: 1rem;
+                gap: f.rem(16);
 
                 &__scan,
                 &__upload {
                     width: fit-content;
-                    padding: 12px;
-                    font-family: u.$inter-font;
+                    padding: f.rem(12);
+                    font-family: u.$font-inter;
                     background-color: inherit;
                     color: inherit;
                     border: none;
-                    border-radius: 15px;
+                    border-radius: f.em(15);
                     cursor: pointer;
                     display: flex;
                     gap: 1em;
-                    font-size: 1.5em;
+                    font-size: f.rem(24);
                     position: relative;
 
                     &:hover {
@@ -87,8 +86,8 @@
                 }
 
                 img {
-                    width: 70px;
-                    height: 60px;
+                    width: f.rem(70);
+                    height: f.rem(60);
                     border: none;
 
                     &:hover span {
@@ -102,11 +101,6 @@
                         align-self: center;
                     }
                 }
-
-                &__upload {
-                    &__icon {}
-                }
-
             }
         }
 
@@ -115,25 +109,17 @@
         }
 
         @include u.breakpoint-up(medium) {
-            width: 100vw;
             display: grid;
             grid-template-rows: 1fr 3fr;
             grid-template-columns: auto;
             grid-template-areas: "column1" "column2";
-            row-gap: 2em;
+            width: fit-content;
+            row-gap: f.rem(32);
 
             &__column1 {
                 width: fit-content;
                 grid-area: column1;
                 justify-self: center;
-
-                &__heading1 {
-                    font-size: 3.8rem;
-                }
-
-                &__heading2 {
-                    font-size: 4.2rem;
-                }
 
                 &__buttons {
                     align-self: center;
@@ -148,9 +134,13 @@
                 position: relative;
                 width: fit-content;
 
+                &__border,
+                &__rightImage {
+                    width: f.rem(640);
+                    height: f.rem(654);
+                }
+
                 &__border {
-                    width: 40rem;
-                    height: 40.875rem;
                     z-index: 0;
                     border: 2px solid white;
 
@@ -160,8 +150,6 @@
                 }
 
                 &__rightImage {
-                    width: 40rem;
-                    height: 40.875rem;
                     top: 2%;
                     right: -2%;
                     position: absolute;
@@ -175,19 +163,38 @@
             grid-template-rows: 1fr;
             grid-template-columns: auto auto;
             grid-template-areas: "column1 column2";
-            row-gap: 0;
+            grid-gap: f.rem(34);
 
             &__column1 {
                 align-items: start;
                 grid-area: column1;
-                margin-top: 4em;
-                margin-left: 6em;
+                margin-top: f.rem(64);
+                margin-left: f.rem(96);
             }
 
             &__column2 {
-                margin-right: 12rem;
+                margin-right: f.rem(192);
+
+                &__border,
+                &__rightImage {
+                    width: f.em(540);
+                    height: f.em(554);
+                }
+            }
+        }
+
+
+        @include u.breakpoint-up(xlarge) {
+            grid-gap: f.rem(240);
+
+            &__column2 {
+
+                &__border,
+                &__rightImage {
+                    width: f.rem(640);
+                    height: f.rem(654);
+                }
             }
         }
     }
 }
-

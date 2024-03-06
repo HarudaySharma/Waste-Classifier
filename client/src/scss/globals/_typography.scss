@@ -1,4 +1,8 @@
-h1, h2, h3 {
+@use '../utils/functions' as f;
+
+h1,
+h2--text-color,
+h3 {
     font-weight: 700;
     line-height: 1.2;
     margin-top: 0;
@@ -8,6 +12,22 @@ p {
     margin-top: 0;
 }
 
-a, a:is(:visited, :active) {
+a,
+a:is(:visited, :active) {
     text-decoration: none;
+}
+
+:root {
+    --font-md: clamp(#{f.rem(16)},
+            0.8899647887323944rem + 0.4694835680751174vw,
+            #{f.rem(21)});
+    --font-lg: clamp(#{f.rem(34)},
+            1.9929577464788732rem + 0.5633802816901408vw,
+            #{f.rem(40)});
+    --font-xl: clamp(#{f.rem(44)},
+            2.3098591549295775rem + 1.8779342723004695vw,
+            #{f.rem(64)});
+    --font-xxl: clamp(#{f.rem(64)},
+            1.943661971830986rem + 4.507042253521126vw,
+            #{f.rem(96)});
 }

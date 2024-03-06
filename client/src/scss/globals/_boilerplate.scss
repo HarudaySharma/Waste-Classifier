@@ -1,5 +1,6 @@
 @use '../utils' as u;
 
+
 html {
     box-sizing: border-box;
     font-size: 100%;
@@ -14,7 +15,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: u.$roboto-font;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    font-family: u.$font-roboto;
+    background-color: var(--color-black);
+    color: var(--color-white);
 }

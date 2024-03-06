@@ -1,0 +1,160 @@
+@use '../../utils/functions' as f;
+@use '../../utils' as u;
+
+.info {
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-content: center;
+    gap: f.em(64);
+
+    @include u.breakpoint-up(medium) {
+        gap: f.em(128);
+    }
+
+    @include u.breakpoint-up(large) {
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    &__main {
+        width: calc(100vw - f.rem(24));
+        justify-self: center;
+        justify-content: center;
+        display: flex;
+        flex-flow: row wrap;
+        gap: f.em(40);
+
+        &__matter {
+            display: flex;
+            flex-flow: column wrap;
+            gap: f.em(40);
+            text-align: left;
+            flex-grow: 1;
+
+            &__column1,
+            &__column2 {
+                letter-spacing: f.rem(2);
+
+                &__heading {
+                    text-transform: uppercase;
+                    font-family: u.$font-jost;
+                    font-weight: 300;
+                    font-size: var(--font-lg);
+                    margin-bottom: f.em(10);
+                }
+            }
+
+            &__column1 {
+                &__para {
+                    font-family: u.$font-poppins;
+                    font-weight: 300;
+                    font-size: var(--font-md);
+                    text-transform: uppercase;
+                    margin-left: f.rem(8);
+                }
+            }
+
+            &__column2 {
+                &__list {
+                    font-family: u.$font-poppins;
+                    font-weight: 300;
+                    font-size: var(--font-md);
+                    text-transform: uppercase;
+
+                    li {
+                        margin-left: f.rem(40);
+                        margin-bottom: f.em(8);
+                    }
+                }
+
+
+            }
+        }
+
+        &__collage {
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: repeat(1fr, 3);
+            grid-template-areas:
+                "i1 i1"
+                "i2 i3"
+                "i4 i4";
+
+            grid-gap: f.rem(8);
+
+            img {
+                border-radius: f.rem(14);
+            }
+
+            &__img1 {
+                grid-area: i1;
+                width: 100%;
+                height: f.rem(112);
+            }
+
+            &__img2 {
+                grid-area: i2;
+                width: 100%;
+                height: f.rem(100);
+            }
+
+            &__img3 {
+                grid-area: i3;
+                width: 100%;
+                height: f.rem(95);
+            }
+
+            &__img4 {
+                grid-area: i4;
+                width: 100%;
+                height: f.rem(91);
+            }
+        }
+
+        @include u.breakpoint-up(medium) {
+            flex-flow: row wrap;
+            justify-content: space-evenly;
+
+            &__matter {
+                padding-inline: f.rem(4);
+                flex-grow: 1;
+            }
+
+            &__collage {
+                grid-template-areas:
+                    "i1 i2"
+                    "i1 i4"
+                    "i3 i4";
+                grid-gap: f.rem(12);
+
+                &__img1 {
+                    width: f.rem(315);
+                    height: f.rem(412);
+                }
+
+                &__img2 {
+                    width: f.rem(338);
+                    height: f.rem(209);
+                }
+
+                &__img3 {
+                    width: f.rem(315);
+                    height: f.rem(195);
+                }
+
+                &__img4 {
+                    width: f.rem(338);
+                    height: f.rem(391);
+                }
+            }
+        }
+
+        @include u.breakpoint-up(large) {
+            &__matter {
+                flex-basis: 40%;
+                flex-grow: 0;
+                margin-top: f.rem(24);
+            }
+        }
+    }
+}

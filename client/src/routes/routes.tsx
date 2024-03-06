@@ -3,6 +3,7 @@ import Home from '../pages/Home/Home.tsx';
 import About from '../pages/About/About.tsx';
 import NotFound from '../pages/NotFound/NotFound.tsx';
 import MainPage from '../pages/MainPage/MainPage.tsx';
+import Info from '../pages/Info/Info.tsx';
 
 const router = createBrowserRouter([
     {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/info",
-        element: <NotFound/>
+        element: <Info/>
     },
     {
         path: "/main",
