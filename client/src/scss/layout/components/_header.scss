@@ -1,4 +1,5 @@
 @use '../../utils/functions' as f;
+@use '../../utils' as u;
 
 .nav {
     width: calc(100vw - 24px);
@@ -7,7 +8,7 @@
     justify-content: space-between;
     align-items: center;
     padding: f.rem(10);
-    background-color:var(--color-black); 
+    background-color: var(--color-black);
     box-shadow: 0 13px 13px rgba(255, 255, 255, 0.1);
 
     &__logo {
@@ -16,44 +17,120 @@
         border: none;
         border-radius: f.em(25);
 
+        img {
+            width: f.rem(42);
+            height: f.rem(42);
+        }
+
         &:hover {
             box-shadow: 0 0 40px rgb(101, 255, 128, 0.8);
             border: none;
         }
+    }
 
-        img {
-            width: f.em(50);
-            height: auto;
-            border: none;
-            outline: none;
-            background: transparent;
+    &__open,
+    &__close {
+        background: none;
+        border: none;
+        padding: 0;
+    }
+
+    &__open[aria-expanded='true'] {
+        +.nav__menu {
+            translate: 0;
+
+            @media (prefers-reduced-motion) {
+                opacity: 1;
+            }
         }
     }
 
-    &__buttons {
-        display: flex;
-        gap: f.rem(4);
+    &__close {
+        display: block;
+        margin-inline-start: auto;
+        margin-block-end: 8rem;
 
-        &__button {
-            border: none;
-            padding: f.rem(10) f.rem(20);
-            margin-left: f.rem(30);
-            font-size: var(--font-sm);
-            cursor: pointer;
-            border-radius: f.rem(35);
-            background-color: var(--color-black);
-            color: white;
+        img {
+            width: 2.5rem;
+        }
+    }
+
+
+    &__menu {
+        position: fixed;
+        inset: 0;
+        padding: 1.5rem;
+        background-color: var(--color-black);
+        z-index: 1;
+        translate: 100vw 0;
+        transition: translate 0.5s ease-in-out;
+
+        @media (width < 40em) and (prefers-reduced-motion) {
+            translate: 0;
+            opacity: 0;
+            transition: opacity 500ms ease-in-out;
+        }
+
+        &__buttons {
+            display: flex;
+            flex-flow: column wrap;
+            gap: f.rem(22);
+
+            &__button {
+                border: none;
+                padding: f.rem(10) f.rem(20);
+                margin-left: f.rem(30);
+                font-size: var(--font-md);
+                cursor: pointer;
+                border-radius: f.rem(35);
+                background-color: var(--color-black);
+                color: white;
+            }
 
             &__icon {
                 width: f.rem(30);
                 height: auto;
                 border: none;
             }
+        }
+    }
 
-            &:hover {
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-            }
+    img {
+        width: f.em(50);
+        height: auto;
+        border: none;
+        outline: none;
+        background: transparent;
+    }
+
+    @include u.breakpoint-up(large) {
+
+        &__open,
+        &__close {
+            display: none;
         }
 
+        &__menu {
+            position: static;
+            translate: 0;
+            transition: 0;
+            padding: 0;
+            background-color: inherit;
+
+            &__buttons {
+                flex-flow: row wrap;
+                gap: f.rem(12);
+
+                &__button {
+                    color: white;
+                    font-size: var(--font-sm);
+
+                    &:hover {
+                        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+                    }
+                }
+            }
+
+        }
     }
 }
