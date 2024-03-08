@@ -1,0 +1,161 @@
+@use '../../utils/functions' as f;
+@use '../../utils' as u;
+
+$EGoal1: url('/src/assets/E-Goal-03-1024x1024.png');
+$EGoal2: url('/src/assets/E-Goal-11-1024x1024.png');
+$EGoal3: url('/src/assets/E-Goal-12-1024x1024.png');
+
+.goals {
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-content: center;
+    gap: f.em(64);
+
+    @include u.breakpoint-up(medium) {
+        gap: f.em(128);
+    }
+
+    @include u.breakpoint-up(large) {
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    &__main {
+        width: calc(100vw - f.rem(24));
+        justify-self: center;
+        justify-content: center;
+        display: flex;
+        flex-flow: row wrap;
+        gap: f.em(40);
+
+        &__matter {
+            &__column1 {
+                &__heading {
+                    font-family: u.$font-jost;
+                    font-size: var(--font-xl);
+                    font-weight: 500;
+                    word-spacing: f.rem(12);
+                    text-transform: uppercase;
+                    font-size: var(--font-xl);
+                    margin-bottom: f.rem(12);
+                }
+
+                &__para {
+                    font-size: var(--font-md);
+                    font-family: u.$font-montserrat;
+                    line-height: f.rem(34);
+                    padding-left: f.rem(4);
+                    font-weight: bold;
+                }
+            }
+        }
+
+        &__collage {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-evenly;
+            gap: f.rem(8);
+
+            div {
+                width: f.rem(125);
+                height: f.rem(122);
+                border-radius: f.rem(8) f.rem(8) 0 0;
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: relative;
+
+                a {
+                    display: block;
+                    position: relative;
+                    top: 100%;
+                    font-family: u.$font-montserrat;
+                    font-weight: 700;
+                    font-size: var(--font-sm);
+                    letter-spacing: f.rem(2);
+                    text-transform: uppercase;
+                    background: var(--color-white);
+                    color: var(--color-black);
+                    text-align: center;
+                    border-radius: 0 0 f.rem(8) f.rem(8);
+                    padding: f.rem(8);
+
+                }
+
+                // clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+                // transition: clip-path 0.5s ease;
+                //
+                // /* Adding a transition for a smoother effect */
+                // &:hover {
+                //     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                // }
+
+            }
+
+            &__img1 {
+                background-image: $EGoal1;
+            }
+
+            &__img2 {
+                background-image: $EGoal2;
+            }
+
+            &__img3 {
+                background-image: $EGoal3;
+            }
+
+        }
+
+        @include u.breakpoint-up(medium) {
+            &__matter {
+                &__column1 {
+                    &__para {
+                        text-align: justify;
+                    }
+                }
+            }
+
+            &__collage {
+                gap: f.rem(54);
+
+                div {
+                    width: f.rem(215);
+                    height: f.rem(212);
+
+                    a {
+                        padding: f.rem(26);
+                    }
+                }
+            }
+        }
+
+        @include u.breakpoint-up(large) {
+            &__matter {
+                &__column1 {
+                    padding-inline: f.rem(52);
+
+                    &__heading {
+                        margin-bottom: f.rem(24);
+                    }
+
+                    &__para {
+                        text-align: center;
+                        line-height: f.rem(54);
+                    }
+                }
+            }
+
+            &__collage {
+                gap: f.rem(154);
+
+                div {
+                    width: f.rem(315);
+                    height: f.rem(312);
+                    border-radius: f.rem(14) f.rem(14) 0 0;
+                }
+            }
+        }
+
+    }
+}

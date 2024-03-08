@@ -1,0 +1,59 @@
+@use '../../utils/functions' as f;
+
+.nav {
+    width: calc(100vw - 24px);
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: f.rem(10);
+    background-color:var(--color-black); 
+    box-shadow: 0 13px 13px rgba(255, 255, 255, 0.1);
+
+    &__logo {
+        margin-right: f.em(10);
+        margin-left: f.em(20);
+        border: none;
+        border-radius: f.em(25);
+
+        &:hover {
+            box-shadow: 0 0 40px rgb(101, 255, 128, 0.8);
+            border: none;
+        }
+
+        img {
+            width: f.em(50);
+            height: auto;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        gap: f.rem(4);
+
+        &__button {
+            border: none;
+            padding: f.rem(10) f.rem(20);
+            margin-left: f.rem(30);
+            font-size: var(--font-sm);
+            cursor: pointer;
+            border-radius: f.rem(35);
+            background-color: var(--color-black);
+            color: white;
+
+            &__icon {
+                width: f.rem(30);
+                height: auto;
+                border: none;
+            }
+
+            &:hover {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+    }
+}

@@ -1,4 +1,3 @@
-import styles from "./Header.module.scss"
 import logo from '../../../assets/logo.png'
 import icon from '../../../assets/address-book.png'
 import Button from "../Button/Button";
@@ -7,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
     const navigate = useNavigate();
     return (
-        <nav className={`${styles.navbar} header__nav`}>
-            <div className={styles.logoContainer}>
-                <img src={logo} alt="logo" className={styles.logo} />
+        <nav className='nav'>
+            <div className={`nav__logo`}>
+                <img src={logo} alt="logo"/>
             </div>
 
-            <div className={styles.navButtons}>
+            <div className='nav__buttons'>
                 <Button
-                    className={styles.navButton}
+                    className='nav__buttons__button'
                     onClickHandler={(e) => {
                         e.preventDefault();
                         navigate('/');
@@ -23,7 +22,7 @@ const Header = () => {
                     <span>Home</span>
                 </Button>
                 <Button
-                    className={styles.navButton}
+                    className='nav__buttons__button'
                     onClickHandler={(e) => {
                         e.preventDefault();
                         navigate('/info');
@@ -32,16 +31,16 @@ const Header = () => {
                     <span>Info</span>
                 </Button>
                 <Button
-                    className={styles.navButton}
+                    className='nav__buttons__button'
                     onClickHandler={(e) => {
                         e.preventDefault();
-                        navigate('/notcreated');
+                        navigate('/goals');
                     }}
                 >
                     <span>Goals</span>
                 </Button>
                 <Button
-                    className={styles.navButton}
+                    className='nav__buttons__button'
                     onClickHandler={(e) => {
                         e.preventDefault();
                         navigate('/about');
@@ -50,13 +49,13 @@ const Header = () => {
                     <span>About Us</span>
                 </Button>
                 <Button
-                    className={styles.navButton}
+                    className='nav__buttons__button'
                     onClickHandler={(e) => {
                         e.preventDefault();
                         navigate('/contact');
                     }}
                 >
-                    <img src={icon} alt="Contact Icon" className={styles.icon} />
+                    <img src={icon} alt="Contact Icon" className='nav__buttons__button__icon' />
                 </Button>
             </div>
 

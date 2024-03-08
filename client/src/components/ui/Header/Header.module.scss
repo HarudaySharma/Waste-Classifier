@@ -1,53 +1,54 @@
-
-.navbar {
+.nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     background-color: #0e0e0e;
-    box-shadow: 0 13px 13px rgba(255, 255, 255, 0.1); /* White shadow */
-    // border: white solid 1px;
-}
+    box-shadow: 0 13px 13px rgba(255, 255, 255, 0.1);
 
-.logoContainer {
-    margin-right: 10px;
-    margin-left: 20px;
-    border: none;
-    border-radius: 25px;
-    &:hover {
-        box-shadow: 0 0 40px rgb(101, 255, 128, 0.8);
+    /* White shadow */
+    // border: white solid 1px;
+    &__logo {
+        margin-right: 10px;
+        margin-left: 20px;
         border: none;
+        border-radius: 25px;
+
+        &:hover {
+            box-shadow: 0 0 40px rgb(101, 255, 128, 0.8);
+            border: none;
+        }
+
+        img {
+            width: 50px;
+            height: auto;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        background-color: #0e0e0e;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-left: 30px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 35px;
+
+        &:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            /* Glow effect on hover */
+        }
+        &__icon {
+            width: 30px;
+            height: auto;
+            border: none;
+        }
+
     }
 }
 
-.logo {
-    width: 50px;
-    height: auto;
-    border: none;
-    outline: none;
-    background: transparent;
-}
-
-.navButtons {
-    display: flex;
-}
-
-.navButton {
-    background-color: #0e0e0e;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-left: 30px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 35px;
-    &:hover {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Glow effect on hover */
-      }
-}
-
-.icon {
-    width: 30px;
-    height: auto;
-    border: none;
-}
