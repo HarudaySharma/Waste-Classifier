@@ -18,7 +18,10 @@ const useUploadImage = (imageFile?: File): [string | undefined, React.Dispatch<R
 
     useEffect(() => {
         async function uploadImg(image: File | null | undefined) {
-            if (!image) return;
+            if (!image){
+                dispatch(setImageUrl({imageUrl: undefined}));
+                return;
+            }
             try {
                 dispatch(imageProcessingStart());
                 const url = await uploadToFirebase({image});

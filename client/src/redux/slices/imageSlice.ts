@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ImageResponseObj } from "../../types";
-import { stat } from "fs";
 
 export type ImageSliceInitial = {
     imageUrl?: string,
@@ -13,8 +12,7 @@ export type ImageSliceInitial = {
     loading?: boolean
 }
 
-const imageSliceInitial: ImageSliceInitial = {
-};
+const imageSliceInitial: ImageSliceInitial = {};
 
 const imageSlice = createSlice({
     name: "image",
@@ -28,11 +26,12 @@ const imageSlice = createSlice({
         },
         populateImage: (state, action: PayloadAction<ImageResponseObj>) => {
             const { imageUrl, wasteType, info } = action.payload;
-            state.imageUrl = imageUrl;
+            if (state.imageUrl == undefined)
+                state.imageUrl = imageUrl;
             state.wasteType = wasteType;
             state.info = info;
         },
-        setImageUrl: (state, action: PayloadAction<{ imageUrl: string }>) => {
+        setImageUrl: (state, action: PayloadAction<{ imageUrl: string | undefined }>) => {
             state.imageUrl = action.payload.imageUrl;
         },
         setImageType: (state, action: PayloadAction<{ wasteType: string }>) => {
@@ -49,6 +48,13 @@ const imageSlice = createSlice({
             state.error = action.payload.error;
         },
         /* eslint-enable @typescript-eslint/no-explicit-any */
+        resetImageState: (state) => {
+            state.error = undefined; 
+            state.loading = undefined;
+            state.info = undefined;
+            state.imageUrl = undefined;
+            state.wasteType = undefined;
+        }
     },
 })
 
@@ -63,4 +69,5 @@ export const {
     setImageUploadError,
     imageProcessingStart,
     imageProcessingStop,
+    resetImageState,
 } = imageSlice.actions;

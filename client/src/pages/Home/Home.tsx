@@ -20,7 +20,7 @@ function Home() {
                             className='home__main__column1__buttons__scan'
                             onClickHandler={(e) => {
                                 e.preventDefault();
-                                navigate('/main');
+                                navigate('/main?type=scan');
                             }}
                         >
                             <img
@@ -34,7 +34,7 @@ function Home() {
                             className='home__main__column1__buttons__upload'
                             onClickHandler={(e) => {
                                 e.preventDefault();
-                                navigate('/main');
+                                navigate('/main?type=upload');
                             }}
                         >
                             <img

@@ -3,3 +3,8 @@ export type ImageResponseObj = {
     wasteType: string;
     info: string;
 }
+
+/* export enum SUPPORTED_METHODS {
+    'upload' = 'UPLOAD',
+    'scan' = 'SCAN'
+} */

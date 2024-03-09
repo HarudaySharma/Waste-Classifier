@@ -1,0 +1,6 @@
+@use '../../utils/functions' as f;
+
+.loader {
+    height: f.rem(64);
+    width: f.rem(64);
+}

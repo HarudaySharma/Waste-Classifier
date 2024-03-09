@@ -5,6 +5,8 @@ import Button from '../ui/Button/Button';
 import useUploadImage from '../../hooks/useUploadImage';
 import { dataURLtoFile } from '../../utils/dataURLtoFile';
 import useFetchImageDetails from '../../hooks/useFetchImageDetails';
+import { useAppDispatch } from '../../hooks';
+import { resetImageState } from '../../redux/slices/imageSlice';
 
 const videoConstraints = {
     width: 420,
@@ -13,15 +15,26 @@ const videoConstraints = {
 };
 
 export const CustomWebCam = () => {
+    const dispatch = useAppDispatch();
     const cameraRef = useRef(null);
-    const [imgFile, setImgFile] = useState<File | null>(null);
+    const [tmpImg, setTmpImg] = useState<string | null>(null);
     const [url, setImage] = useUploadImage();
     const [setImageUrl] = useFetchImageDetails(url);
 
     useEffect(() => {
-        setImage(imgFile);
-    }, [imgFile, setImage]);
-
+        console.log("resetting image state");
+        dispatch(resetImageState());
+        return () => {
+            dispatch(resetImageState());
+            const root = document.documentElement;
+            root.style.setProperty(
+                "--main-page-grid-template-columns", "1fr")
+            root.style.setProperty(
+                "--main-page-grid-template-rows", "1fr")
+            root.style.setProperty(
+                "--main-page-grid-area", `"c1"`)
+        }
+    }, [dispatch])
 
     useEffect(() => {
         setImageUrl(url);
@@ -31,33 +44,48 @@ export const CustomWebCam = () => {
     const capture = React.useCallback(() => {
         const image = cameraRef?.current?.getScreenshot({ width: 420, height: 420 });
         if (image) {
-            const file = dataURLtoFile(image, 'captured-image.jpg');
-            console.log(file);
-            setImgFile(file);
+            setTmpImg(image);
         }
     }, [cameraRef]);
 
 
     const reCapture = () => {
-        setImgFile(null);
+        setTmpImg(null);
     }
+
+    const sendImage = () => {
+        if (!tmpImg)
+            return;
+        dispatch(resetImageState());
+        const file = dataURLtoFile(tmpImg, 'captured-image.jpg');
+        setImage(file);
+        setTmpImg(null);
+    }
+
     return (
-        <div className={styles.container}>
-            {url ?
-                <img src={url} />
-                :
-                <Webcam
-                    audio={false}
-                    videoConstraints={videoConstraints}
-                    ref={cameraRef}
-                    screenshotFormat='image/jpeg'
-                    height={420}
-                    width={420}
-                />
+        <div className='web-camera'>
+            {/* styles.container */}
+            {
+                tmpImg
+                    ? <img src={tmpImg} />
+                    : <Webcam
+                        audio={false}
+                        videoConstraints={videoConstraints}
+                        ref={cameraRef}
+                        screenshotFormat='image/jpeg'
+                        height={420}
+                        width={420}
+                    />
             }
-            <Button onClickHandler={imgFile ? reCapture : capture}>
-                {imgFile ? "RECAPTURE" : "CAPTURE"}
+            <Button onClickHandler={tmpImg ? reCapture : capture}>
+                {tmpImg ? "RECAPTURE" : "CAPTURE"}
             </Button>
-        </div>
+            {
+                tmpImg &&
+                <Button onClickHandler={sendImage}>
+                    Send
+                </Button>
+            }
+        </div >
     )
 }
