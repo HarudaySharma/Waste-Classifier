@@ -24,7 +24,7 @@ function MainPage() {
     }, []);
 
     useEffect(() => {
-        if (!loading)
+        if (!loading && !imageUrl)
             return;
         const root = document.documentElement;
         root.style.setProperty(
@@ -33,7 +33,7 @@ function MainPage() {
             "--main-page-grid-template-rows", "1fr 1fr")
         root.style.setProperty(
             "--main-page-grid-area", `"c2 c3" "c1 c3"`)
-    }, [loading]);
+    }, [loading, imageUrl]);
 
     return (
         <main className="Main">

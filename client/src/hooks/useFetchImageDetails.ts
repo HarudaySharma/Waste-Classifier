@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useAppDispatch } from ".";
 import { imageProcessingStart, imageProcessingStop, populateImage, setImageUploadError } from "../redux/slices/imageSlice";
 import { ImageResponseObj } from "../types";
+import { clearAllBodyScrollLocks } from "body-scroll-lock";
 
 /*
     *@params
@@ -11,7 +12,16 @@ import { ImageResponseObj } from "../types";
     *
     * 
 */
-const useFetchImageDetails = (initialUrl?: string): [React.Dispatch<React.SetStateAction<string | undefined>>] => {
+
+type useFetchImageDetailsType = [
+    React.Dispatch<React.SetStateAction<string | undefined>>,
+    React.MutableRefObject<AbortController | undefined>
+];
+
+const useFetchImageDetails = (initialUrl?: string): useFetchImageDetailsType => {
+    // for aborting the requests no longer required
+    const abortController = useRef<AbortController>();
+    //
     const dispatch = useAppDispatch();
     const [imageUrl, setImageUrl] = useState(initialUrl);
 
@@ -20,9 +30,16 @@ const useFetchImageDetails = (initialUrl?: string): [React.Dispatch<React.SetSta
             if (!imageUrl)
                 return;
             try {
+                if (abortController.current)
+                    abortController.current.abort();
+
                 dispatch(imageProcessingStart());
+                abortController.current = new AbortController();
+                const signal = abortController.current.signal;
+
                 const res = await fetch('/api/', {
                     method: 'POST',
+                    signal,
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -39,14 +56,17 @@ const useFetchImageDetails = (initialUrl?: string): [React.Dispatch<React.SetSta
                 dispatch(imageProcessingStop());
             }
             catch (err) {
+                if (err.name === 'AbortError') {
+                    console.log('request aborted')
+                    return;
+                }
                 dispatch(setImageUploadError({ error: err }));
                 dispatch(imageProcessingStop());
-                console.log(err);
             }
         }
         fetchDetails();
     }, [imageUrl, dispatch])
 
-    return [setImageUrl];
+    return [setImageUrl, abortController];
 }
 export default useFetchImageDetails;

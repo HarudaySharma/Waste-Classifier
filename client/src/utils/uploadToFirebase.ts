@@ -1,4 +1,4 @@
-import { getStorage, ref, uploadBytesResumable, getDownloadURL, StorageError } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, StorageError, UploadTask } from "firebase/storage";
 import app from "../providers/firebase.js";
 import React from "react";
 
@@ -6,6 +6,7 @@ interface handleImageUploadProps {
     image: File;
     setImageUploadError?: React.Dispatch<React.SetStateAction<StorageError | undefined>>;
     setImageUploadPercent?: React.Dispatch<React.SetStateAction<number>>;
+    uploadTaskRef: React.MutableRefObject<UploadTask | undefined>;
 }
 
 /*
@@ -16,6 +17,7 @@ interface handleImageUploadProps {
 */
 const uploadToFirebase = async ({
     image,
+    uploadTaskRef,
 }: handleImageUploadProps):
     Promise<string | undefined> => {
 
@@ -23,6 +25,7 @@ const uploadToFirebase = async ({
     const fileName = new Date().getTime() + image.name;
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, image);
+    uploadTaskRef.current = uploadTask;
 
     let url = undefined;
     await new Promise((resolve, reject) => {

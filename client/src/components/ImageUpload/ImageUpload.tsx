@@ -7,22 +7,22 @@ import { resetImageState } from "../../redux/slices/imageSlice";
 import { useAppDispatch } from "../../hooks";
 
 const ImageUpload = () => {
-    //const [imageUploadPercent, setImageUploadPercent] = useState(0);
-    //const [imageUploadError, setImageUploadError] = useState<StorageError | undefined>(undefined);
     const dispatch = useAppDispatch();
-    const [url, setImage] = useUploadImage();
-    const [setImageUrl] = useFetchImageDetails(url);
+    const [url, setImage, uploadTaskRef] = useUploadImage();
+    const [setImageUrl, abortController] = useFetchImageDetails(url);
 
     useEffect(() => {
-        console.log("resetting image state");
-        dispatch(resetImageState());
         return () => {
+            // abort the request if user changes the page
+            if(uploadTaskRef.current) uploadTaskRef.current.cancel();
+            if (abortController.current) abortController.current.abort();
             dispatch(resetImageState());
         }
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
-        setImageUrl(url);
+        if (url)
+            setImageUrl(url);
     }, [url, setImageUrl]);
 
 
@@ -41,8 +41,6 @@ const ImageUpload = () => {
                     setImage(e.dataTransfer.files[0])
                 }}
             />
-            {/*imagePreview &&
-                <img src={imagePreview} />*/}
         </div>
     )
 }

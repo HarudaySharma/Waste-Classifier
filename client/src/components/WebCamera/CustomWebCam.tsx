@@ -18,26 +18,21 @@ export const CustomWebCam = () => {
     const dispatch = useAppDispatch();
     const cameraRef = useRef(null);
     const [tmpImg, setTmpImg] = useState<string | null>(null);
-    const [url, setImage] = useUploadImage();
-    const [setImageUrl] = useFetchImageDetails(url);
+    const [url, setImage, uploadTaskRef] = useUploadImage();
+    const [setImageUrl, abortController] = useFetchImageDetails(url);
 
     useEffect(() => {
-        console.log("resetting image state");
-        dispatch(resetImageState());
         return () => {
+            // abort the request if user changes the page
+            if (uploadTaskRef.current) uploadTaskRef.current.cancel();
+            if (abortController.current) abortController.current.abort();
             dispatch(resetImageState());
-            const root = document.documentElement;
-            root.style.setProperty(
-                "--main-page-grid-template-columns", "1fr")
-            root.style.setProperty(
-                "--main-page-grid-template-rows", "1fr")
-            root.style.setProperty(
-                "--main-page-grid-area", `"c1"`)
         }
-    }, [dispatch])
+    }, [])
 
     useEffect(() => {
-        setImageUrl(url);
+        if (url)
+            setImageUrl(url);
     }, [url, setImageUrl]);
 
 

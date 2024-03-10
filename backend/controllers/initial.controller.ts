@@ -8,6 +8,8 @@ import createResponseObj from "../utils/createResponseObj.js";
 
 export const initialController = async (req: Request, res: Response) => {
     const {imageUrl} = req.body;
+    if(!imageUrl)
+        return;
     try {
         const model = getModel();
         console.log(await model.checkModel("model is loaded"));
