@@ -1,5 +1,6 @@
-@use '../../utils' as u;
-@use '../../utils/functions' as f;
+@use '../utils' as u;
+@use '../utils/functions' as f;
+@use '../components/button';
 
 /*styles.bodyContent*/
 .home {
@@ -59,31 +60,11 @@
                 align-items: start;
                 gap: f.rem(16);
 
-                &__scan,
-                &__upload {
-                    width: fit-content;
-                    padding: f.rem(12);
-                    font-family: u.$font-inter;
-                    background-color: inherit;
-                    color: inherit;
-                    border: none;
-                    border-radius: f.em(15);
-                    cursor: pointer;
-                    display: flex;
-                    gap: 1em;
-                    font-size: f.rem(24);
-                    position: relative;
-
-                    &:hover {
-                        box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
-                        /* Glow effect on hover */
-                    }
-
-                    span {
-                        height: fit-content;
-                        align-self: center;
-                    }
+                &__upload,
+                &__scan {
+                    @extend %button;
                 }
+
 
                 img {
                     width: f.rem(70);

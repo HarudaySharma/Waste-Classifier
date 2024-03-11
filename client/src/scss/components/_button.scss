@@ -1,0 +1,27 @@
+@use '../utils' as u;
+@use '../utils/functions' as f;
+
+%button {
+    width: fit-content;
+    padding: f.rem(12);
+    font-family: u.$font-inter;
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    border-radius: f.em(15);
+    cursor: pointer;
+    display: flex;
+    gap: f.rem(16);
+    font-size: f.rem(24);
+    position: relative;
+
+    &:hover {
+        box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
+        /* Glow effect on hover */
+    }
+
+    span {
+        height: fit-content;
+        align-self: center;
+    }
+}

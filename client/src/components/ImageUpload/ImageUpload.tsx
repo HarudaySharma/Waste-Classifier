@@ -5,16 +5,20 @@ import useUploadImage from "../../hooks/useUploadImage";
 import useFetchImageDetails from "../../hooks/useFetchImageDetails";
 import { resetImageState } from "../../redux/slices/imageSlice";
 import { useAppDispatch } from "../../hooks";
+import scanIcon from '../../assets/vector.png'
+import Button from "../ui/Button/Button";
+import { useSearchParams } from "react-router-dom";
 
 const ImageUpload = () => {
     const dispatch = useAppDispatch();
+    const [, setURLSearchParams] = useSearchParams();
     const [url, setImage, uploadTaskRef] = useUploadImage();
     const [setImageUrl, abortController] = useFetchImageDetails(url);
 
     useEffect(() => {
         return () => {
             // abort the request if user changes the page
-            if(uploadTaskRef.current) uploadTaskRef.current.cancel();
+            if (uploadTaskRef.current) uploadTaskRef.current.cancel();
             if (abortController.current) abortController.current.abort();
             dispatch(resetImageState());
         }
@@ -41,6 +45,14 @@ const ImageUpload = () => {
                     setImage(e.dataTransfer.files[0])
                 }}
             />
+            <Button className='change-btn' onClickHandler={() => setURLSearchParams({ type: 'scan' })}>
+                <img
+                    src={scanIcon}
+                    alt="scanIcon"
+                    className='home__main__column1__buttons__scan__icon'
+                />
+                Scan
+            </Button>
         </div>
     )
 }

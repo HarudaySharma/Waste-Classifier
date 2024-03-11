@@ -12,7 +12,7 @@ export function openMobileMenu() {
     navMenu.removeAttribute('inert');
     navMenu.removeAttribute('style');
     main.setAttribute('inert', '');
-    bodyScrollLockUpgrade.disableBodyScroll(body);
+    //bodyScrollLockUpgrade.disableBodyScroll(body);
     btnClose.focus();
 }
 
@@ -20,7 +20,7 @@ export function closeMobileMenu() {
     btnOpen.setAttribute('aria-expanded', 'false');
     navMenu.setAttribute('inert', '');
     main.removeAttribute('inert');
-    bodyScrollLockUpgrade.enableBodyScroll(body);
+    //bodyScrollLockUpgrade.enableBodyScroll(body);
     btnOpen.focus();
 
     setTimeout(() => {

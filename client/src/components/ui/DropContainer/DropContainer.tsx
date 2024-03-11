@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import styles from "./DropContainer.module.scss"
 
 interface DropContainerProps {
     active: boolean;
@@ -42,18 +41,18 @@ const DropContainer: React.FC<DropContainerProps> = ({
             onSubmit={(e) => e.preventDefault()}
             onDragEnter={handleDrag}
         >
-            <div className={styles['drop-box']}
+            <div className='drop-box'
                 onDragEnter={handleDrag}
                 onDragOver={handleDrag}
                 onDrop={handleDrop}
                 onClick={() => fileInputRef.current.click()}
             >
-                <div className={styles.upBtn}> 
-                <UploadIcon className="upload-icon" />
-                    <span className={styles.label1}>{heading}</span>
+                <div className='drop-box__up-btn green'> 
+                <UploadIcon className="drop-box__upload-icon" />
+                    <span className='drop-box__heading1'>{heading}</span>
                 </div>
-                <div className={styles.or}> or </div>
-                <div className={styles.subHeading}>{subheading}</div>
+                <div className='drop-box__or'> or </div>
+                <div className='drop-box__heading2'>{subheading}</div>
                 <input
                     ref={fileInputRef}
                     type="file"

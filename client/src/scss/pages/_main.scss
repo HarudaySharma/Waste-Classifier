@@ -1,5 +1,6 @@
-@use '../../utils' as u;
-@use '../../utils/functions' as f;
+@use '../utils' as u;
+@use '../utils/functions' as f;
+@use '../components/button';
 
 :root {
     --main-page-grid-template-columns: 1fr;
@@ -21,19 +22,45 @@
         display: flex;
         gap: 0;
         flex-flow: column wrap;
+        justify-content: space-between;
+        height: 100vh;
     }
 
     &__wrapper {
+        flex-basis: 80%;
         display: grid;
         justify-items: center;
+        align-items: center;
+        justify-self: center;
         grid-template-rows: var(--main-page-grid-template-rows);
         grid-template-columns: var(--main-page-grid-template-columns);
         grid-template-areas: var(--main-page-grid-area);
+
+        .image-upload,
+        .web-camera {
+            .change-btn {
+                text-transform: uppercase;
+                letter-spacing: f.rem(1);
+                @extend %button;
+
+                img {
+                    width: f.rem(34);
+                    height: f.rem(28);
+                    border: none;
+
+                    &:hover span {
+                        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+                        /* White shadow on hover for the image */
+                    }
+                }
+            }
+        }
 
         .image-upload {
             width: fit-content;
             grid-area: c1;
         }
+
         .web-camera {
             width: fit-content;
             grid-area: c1;

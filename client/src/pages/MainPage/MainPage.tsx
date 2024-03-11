@@ -1,4 +1,3 @@
-import styles from "./MainPage.module.scss"
 import Header from '../../components/ui/Header/Header'
 import ImageUpload from '../../components/ImageUpload/ImageUpload'
 import ImageInfo from '../../components/ImageInfo/ImageInfo'
@@ -39,8 +38,8 @@ function MainPage() {
         <main className="Main">
             <Header />
             <div className="Main__wrapper">
-                {type === 'scan' && <ImageUpload />}
-                {type === 'upload' && <CustomWebCam />}
+                {type === 'upload' && <ImageUpload />}
+                {type === 'scan' && <CustomWebCam />}
                 {
                     !imageUrl && loading
                         ? <ReactLoading type="bars" className="loader" />

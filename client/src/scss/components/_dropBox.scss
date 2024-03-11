@@ -1,0 +1,45 @@
+@use '../utils' as u;
+@use '../utils/functions' as f;
+
+.drop-box {
+    display: flex;
+    font-family: u.$font-roboto;
+    background-color: var(--color-white);
+    color: black;
+    border-radius: f.rem(32);
+    flex-flow: column wrap;
+    padding: f.rem(22) f.rem(56);
+    margin: f.rem(4) auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    row-gap: f.rem(32);
+    box-shadow: 0px 8.239999771118164px 24.719999313354492px -8.239999771118164px var(--color-white);
+
+    &__up-btn {
+        display: flex;
+        cursor: pointer;
+        gap: f.rem(12);
+        align-items: center;
+        padding: f.rem(18);
+        font-weight: 500;
+        font-size: var(--font-lg);
+        border-radius: f.rem(64);
+        border: f.rem(2.06) solid #D9D9D9;
+        box-shadow: 0px 8.239999771118164px 24.719999313354492px -8.239999771118164px #0000001F;
+    }
+
+    &__or {
+        font-size: var(--font-md);
+        color: gray;
+    }
+
+    &__heading2 {
+        font-weight: 500;
+        font-size: var(--font-md);
+    }
+}
+
+.drop-box:hover {
+    cursor: copy;
+}
