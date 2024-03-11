@@ -5,10 +5,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "build": "npx tsc --build --clean && npx tsc",
-    "start": "node ./backend/dist/server.js",
+    "start": "npx tsc --build --clean && npx tsc && node ./backend/dist/server.js",
     "dev": "npx tsc -w & npx nodemon ./backend/dist/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",

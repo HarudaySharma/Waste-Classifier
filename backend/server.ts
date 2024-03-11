@@ -12,6 +12,7 @@ const app: Application = express();
 const PORT: string = process.env.PORT || "3000";
 
 const __dirname = path.resolve();
+
 app.use(express.static(path.join(__dirname, 'client/dist')));
 
 app.get('*', (req, res) => {

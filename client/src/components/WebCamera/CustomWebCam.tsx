@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import styles from "./CustomWebCam.module.scss"
 import Webcam from 'react-webcam'
 import Button from '../ui/Button/Button';
 import uploadIcon from '../../assets/upload.png'

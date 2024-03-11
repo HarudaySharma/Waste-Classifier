@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import DropContainer from "../ui/DropContainer/DropContainer";
-import styles from "./ImageUpload.module.scss"
 import useUploadImage from "../../hooks/useUploadImage";
 import useFetchImageDetails from "../../hooks/useFetchImageDetails";
 import { resetImageState } from "../../redux/slices/imageSlice";
