@@ -4,34 +4,31 @@ import openIcon from "../../../assets/hamburger.svg"
 import closeIcon from "../../../assets/close.svg"
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from 'react';
-
-
-type CallbackFunction = () => void;
-let openMobile: CallbackFunction | null = null;
-let closeMobile: CallbackFunction | null;
+import { LegacyRef, useEffect, useRef } from 'react';
+import { closeMobileMenu, openMobileMenu, setupTopNav } from './mobileScript.ts';
 
 const Header = () => {
     const navigate = useNavigate();
+    const navMenuRef = useRef<HTMLDivElement>();
+    const openBtnRef = useRef<HTMLButtonElement>();
+    const closeBtnRef = useRef<HTMLButtonElement>();
+    const matchMediaRef = useRef<MediaQueryList>();
 
     useEffect(() => {
-        const loadMobileScript = async () => {
-            const { openMobileMenu, closeMobileMenu } = await import('./mobileScript.js');
-            openMobile = openMobileMenu;
-            closeMobile = closeMobileMenu;
-        };
-
-        loadMobileScript();
+        matchMediaRef.current = window.matchMedia('(width < 55.625rem');
+        setupTopNav({ navMenuRef, openBtnRef, media: matchMediaRef.current, closeBtnRef });
+        matchMediaRef.current.addEventListener('change', (e) => {
+            setupTopNav({ media: e, navMenuRef, openBtnRef, closeBtnRef });
+        });
     }, []);
 
     const navOpenHandler = () => {
-        if (openMobile)
-            openMobile();
+            openMobileMenu({navMenuRef, openBtnRef, closeBtnRef});
     }
 
     const onCloseHandle = () => {
-        if (closeMobile)
-            closeMobile();
+        if(matchMediaRef.current?.matches)
+            closeMobileMenu({navMenuRef, openBtnRef, closeBtnRef});
     }
 
     return (
@@ -41,6 +38,7 @@ const Header = () => {
             </div>
 
             <Button
+                btnRef={openBtnRef}
                 id='nav-open'
                 className="nav__open"
                 aria_expanded={false}
@@ -49,8 +47,14 @@ const Header = () => {
             >
                 <img src={openIcon} alt="" width="40" height="24" />
             </Button>
-            <div className='nav__menu' role='dialog' aria-labelledby='nav-label'>
+            <div
+                ref={navMenuRef as LegacyRef<HTMLDivElement>}
+                className='nav__menu'
+                role='dialog'
+                aria-labelledby='nav-label'
+            >
                 <Button
+                    btnRef={closeBtnRef}
                     id='nav-close'
                     className="nav__close"
                     aria_label="Close"
@@ -64,6 +68,7 @@ const Header = () => {
                         className='nav__menu__buttons__button'
                         onClickHandler={(e) => {
                             e.preventDefault();
+                            onCloseHandle();
                             navigate('/');
                         }}
                     >
@@ -73,6 +78,7 @@ const Header = () => {
                         className='nav__menu__buttons__button'
                         onClickHandler={(e) => {
                             e.preventDefault();
+                            onCloseHandle();
                             navigate('/info');
                         }}
                     >
@@ -82,6 +88,7 @@ const Header = () => {
                         className='nav__menu__buttons__button'
                         onClickHandler={(e) => {
                             e.preventDefault();
+                            onCloseHandle();
                             navigate('/goals');
                         }}
                     >
@@ -91,6 +98,7 @@ const Header = () => {
                         className='nav__menu__buttons__button'
                         onClickHandler={(e) => {
                             e.preventDefault();
+                            onCloseHandle();
                             navigate('/about');
                         }}
                     >
@@ -100,6 +108,7 @@ const Header = () => {
                         className='nav__menu__buttons__button'
                         onClickHandler={(e) => {
                             e.preventDefault();
+                            onCloseHandle();
                             navigate('/contact');
                         }}
                     >

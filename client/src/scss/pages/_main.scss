@@ -9,26 +9,24 @@
 }
 
 .Main {
-    display: grid;
-    grid-template-rows: auto auto;
-    justify-content: center;
-    gap: f.em(64);
-
-    @include u.breakpoint-up(medium) {
-        gap: f.em(128);
-    }
-
-    @include u.breakpoint-up(large) {
-        display: flex;
-        gap: 0;
-        flex-flow: column wrap;
-        justify-content: space-between;
-        height: fit-content;
-    }
-
+    // display: grid;
+    // grid-template-rows: auto auto;
+    // justify-content: center;
+    // gap: f.em(64);
+    //
+    // @include u.breakpoint-up(medium) {
+    //     gap: f.em(128);
+    // }
+    //
+    // @include u.breakpoint-up(large) {
+    //     display: flex;
+    //     gap: 0;
+    //     flex-flow: column wrap;
+    //     justify-content: space-between;
+    //     height: fit-content;
+    // }
+    //
     &__wrapper {
-        height: 80vh;
-        max-height: fit-content;
         display: grid;
         justify-items: center;
         align-items: center;
