@@ -2,7 +2,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { config } from "dotenv";
 
 config();
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 
 async function askGemini (prompt: string) {
   // For text-only input, use the gemini-pro model
