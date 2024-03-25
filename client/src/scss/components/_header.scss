@@ -65,7 +65,7 @@
         translate: 100vw 0;
         transition: translate 0.5s ease-in-out;
 
-        @media (width < 40em) and (prefers-reduced-motion) {
+        @media (width < 55.625rem) and (prefers-reduced-motion) {
             translate: 0;
             opacity: 0;
             transition: opacity 500ms ease-in-out;

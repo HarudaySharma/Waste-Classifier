@@ -4,15 +4,15 @@
 
 /*styles.bodyContent*/
 .home {
-    display: grid;
-    grid-template-rows: auto auto;
-    justify-content: center;
-    gap: f.rem(140);
-
-    @include u.breakpoint-up(large) {
-        display: flex;
-        flex-flow: column wrap;
-    }
+    // display: grid;
+    // grid-template-rows: auto auto;
+    // justify-content: center;
+    // gap: f.rem(140);
+    //
+    // @include u.breakpoint-up(large) {
+    //     display: flex;
+    //     flex-flow: column wrap;
+    // }
 
     &__main {
         width: calc(100vw - 16px);

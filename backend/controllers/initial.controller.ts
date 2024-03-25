@@ -1,31 +1,24 @@
-import {Request, Response} from "express"
+import { Request, Response } from "express"
 
-import { Prediction } from "../types/MLModelTypes.js";
+import { Model, RESPONSEOBJ } from "../types"
+
 import { getModel } from "../utils/lgModel.js";
-import askGemini from "../utils/geminiText.js";
-import generatePrompt from "../utils/generatePrompt.js";
 import createResponseObj from "../utils/createResponseObj.js";
 
 export const initialController = async (req: Request, res: Response) => {
-    const {imageUrl} = req.body;
-    if(!imageUrl)
+    const { imageUrl } = req.body;
+    if (!imageUrl)
         return;
+    console.log("route hit");
     try {
-        const model = getModel();
+        const model: Model = getModel();
         console.log(await model.checkModel("model is loaded"));
+        // classify the image
         const predictions = await model.classify({
             imageUrl,
         });
-        predictions.forEach((obj: Prediction) => {
-            console.log(`${obj.class}: ${obj.score * 100}`);
-        });
-
-        const highestScore = predictions.reduce((prev, curr) => {
-            return prev.score < curr.score ? curr : prev;
-        })
-        console.log(highestScore);
-        const message = await askGemini(generatePrompt(highestScore.class));
-        res.status(200).json(createResponseObj(highestScore.class, imageUrl, message));
+        const resObj: RESPONSEOBJ = await createResponseObj({ predictions, imageUrl });
+        res.status(200).json(resObj);
     }
     catch (err) {
         console.log("error in controller");

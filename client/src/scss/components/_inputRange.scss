@@ -1,0 +1,8 @@
+@use '../utils' as u;
+@use '../utils/functions' as f;
+
+.range-component {
+    width: var(--font-sm);
+    height: calc(var(--font-sm), 1em);
+}
+

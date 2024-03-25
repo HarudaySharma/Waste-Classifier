@@ -1,4 +1,3 @@
-import Header from '../../components/ui/Header/Header'
 import ImageUpload from '../../components/ImageUpload/ImageUpload'
 import ImageInfo from '../../components/ImageInfo/ImageInfo'
 import { CustomWebCam } from '../../components/WebCamera/CustomWebCam'
@@ -35,18 +34,15 @@ function MainPage() {
     }, [loading, imageUrl]);
 
     return (
-        <main className="Main">
-            <Header />
-            <div className="Main__wrapper">
-                {type === 'upload' && <ImageUpload />}
-                {type === 'scan' && <CustomWebCam />}
-                {
-                    !imageUrl && loading
-                        ? <ReactLoading type="bars" className="loader" />
-                        : <img className='waste-img' src={imageUrl} />
-                }
-                {imageUrl && <ImageInfo />}
-            </div>
+        <main id='main_container' className="Main__wrapper">
+            {type === 'upload' && <ImageUpload />}
+            {type === 'scan' && <CustomWebCam />}
+            {
+                !imageUrl && loading
+                    ? <ReactLoading type="bars" className="loader" />
+                    : <img className='waste-img' src={imageUrl} />
+            }
+            {imageUrl && <ImageInfo />}
         </main>
     )
 }

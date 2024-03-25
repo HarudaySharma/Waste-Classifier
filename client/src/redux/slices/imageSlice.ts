@@ -1,18 +1,24 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ImageResponseObj } from "../../types";
+import { ImageResponseObj, HighestRank } from "../../types";
 
-export type ImageSliceInitial = {
-    imageUrl?: string,
-    wasteType?: string,
-    info?: string,
+export interface ImageSliceInitial extends ImageResponseObj {
     /* eslint-disable @typescript-eslint/no-explicit-any */
-    error?: any,
+    error?: any;
     /* eslint-enable @typescript-eslint/no-explicit-any */
-    percentage?: number,
-    loading?: boolean
+    percentage?: number;
+    loading?: boolean;
 }
 
-const imageSliceInitial: ImageSliceInitial = {};
+const imageSliceInitial: ImageSliceInitial = {
+    imageUrl: '',
+    classes: [],
+    highestRank: {
+        class: '',
+        score: 0,
+        about: '',
+    },
+};
+
 
 const imageSlice = createSlice({
     name: "image",
@@ -25,21 +31,26 @@ const imageSlice = createSlice({
             state.loading = false;
         },
         populateImage: (state, action: PayloadAction<ImageResponseObj>) => {
-            const { imageUrl, wasteType, info } = action.payload;
-            if (state.imageUrl == undefined)
-                state.imageUrl = imageUrl;
-            state.wasteType = wasteType;
-            state.info = info;
+            state.imageUrl = action.payload.imageUrl;
+            state.classes = action.payload.classes;
+            state.highestRank = action.payload.highestRank;
+            // const { imageUrl, classes,  } = action.payload;
+            // if (state.imageUrl == undefined)
+            //     state.imageUrl = imageUrl;
+            // state.wasteType = wasteType;
+            // state.info = info;
         },
         setImageUrl: (state, action: PayloadAction<{ imageUrl: string | undefined }>) => {
-            state.imageUrl = action.payload.imageUrl;
+            if (action.payload.imageUrl)
+                state.imageUrl = action.payload.imageUrl;
         },
-        setImageType: (state, action: PayloadAction<{ wasteType: string }>) => {
-            state.wasteType = action.payload.wasteType;
+        setHighestRank: (state, action: PayloadAction<HighestRank | undefined>) => {
+            if (action.payload)
+                state.highestRank = action.payload;
         },
-        setImageInfo: (state, action: PayloadAction<{ info: string }>) => {
+        /* sctImageInfo: (state, action: PayloadAction<{ info: string }>) => {
             state.info = action.payload.info;
-        },
+        }, */
         setImageUploadPercentage: (state, action: PayloadAction<{ percentage: number }>) => {
             state.percentage = action.payload.percentage;
         },
@@ -49,11 +60,16 @@ const imageSlice = createSlice({
         },
         /* eslint-enable @typescript-eslint/no-explicit-any */
         resetImageState: (state) => {
-            state.error = undefined; 
+            state.imageUrl = '';
+            state.classes = [];
+            state.highestRank = {
+                class: '',
+                score: 0,
+                about: '',
+            };
+            state.percentage = undefined;
+            state.error = undefined;
             state.loading = undefined;
-            state.info = undefined;
-            state.imageUrl = undefined;
-            state.wasteType = undefined;
         }
     },
 })
@@ -63,8 +79,8 @@ export default imageSlice.reducer;
 export const {
     populateImage,
     setImageUrl,
-    setImageInfo,
-    setImageType,
+    /* setImageInfo,
+    setImageType, */
     setImageUploadPercentage,
     setImageUploadError,
     imageProcessingStart,

@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react"
 import { useAppDispatch } from ".";
 import { imageProcessingStart, imageProcessingStop, populateImage, setImageUploadError } from "../redux/slices/imageSlice";
 import { ImageResponseObj } from "../types";
-import { clearAllBodyScrollLocks } from "body-scroll-lock";
 
 /*
     *@params

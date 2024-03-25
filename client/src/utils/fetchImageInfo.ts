@@ -1,9 +1,9 @@
 import React from "react";
-import { ResponseObj } from "../types";
+import { ImageResponseObj } from "../types";
 
 type FetchImageInfoParams = {
     imageURL: string;
-    setImageObj: React.Dispatch<React.SetStateAction<ResponseObj | undefined>>;
+    setImageObj: React.Dispatch<React.SetStateAction<ImageResponseObj | undefined>>;
 }
 
 const fillImageDetails = async ({ imageURL, setImageObj }: FetchImageInfoParams): Promise<void> => {
