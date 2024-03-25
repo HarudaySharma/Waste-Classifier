@@ -6,6 +6,8 @@ import MainPage from '../pages/MainPage/MainPage.tsx';
 import Info from '../pages/Info/Info.tsx';
 import Goals from '../pages/Goals/Goals.tsx';
 import { Layout } from '../components/ui/Layout.tsx';
+import { ProtectedRoute } from '../utils/ProtectedRoute.tsx';
+import { ImageDetails } from '../pages/ImageDetails/ImageDetails.tsx';
 
 const router = createBrowserRouter([
     {
@@ -30,7 +32,13 @@ const router = createBrowserRouter([
             },
             {
                 path: "/main",
-                element: <MainPage />
+                element: <MainPage />,
+                children: [
+                    {
+                        path: 'imagedetails',
+                        element: <ProtectedRoute> <ImageDetails/> </ProtectedRoute>
+                    }
+                ]
             },
         ]
     }

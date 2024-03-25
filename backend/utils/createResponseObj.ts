@@ -10,8 +10,8 @@ type CreateResponseObjFunParams = {
 
 const createResponseObj = async ({ predictions, imageUrl }: CreateResponseObjFunParams): Promise<RESPONSEOBJ> => {
     const classes = predictions.map((obj: Prediction) => {
-        console.log(`${obj.class}: ${obj.score * 100}`);
-        return { class: obj.class, score: obj.score * 100 };
+        console.log(`${obj.class}: ${obj.score}`);
+        return { class: obj.class, score: obj.score };
     });
 
     const { class: wasteType, score } = predictions.reduce((prev, curr) => {
@@ -35,7 +35,7 @@ const createResponseObj = async ({ predictions, imageUrl }: CreateResponseObjFun
         classes,
         highestRank: {
             class: wasteType,
-            score: score * 100,
+            score: score,
             about,
         },
     }
