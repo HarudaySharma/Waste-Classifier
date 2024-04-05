@@ -18,8 +18,10 @@ const ImageUpload = () => {
         return () => {
             // abort the request if user changes the page
             if (uploadTaskRef.current) uploadTaskRef.current.cancel();
-            if (abortController.current) abortController.current.abort();
-            dispatch(resetImageState());
+            if (abortController.current) {
+                abortController.current.abort();
+                dispatch(resetImageState());
+            }
         }
     }, []);
 

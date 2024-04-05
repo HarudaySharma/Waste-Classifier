@@ -1,18 +1,13 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../hooks"
-import React from "react";
 
 type ProtectedRouteParams = {
     children: React.ReactNode,
 }
 
-export const ProtectedRoute = ({ children }: ProtectedRouteParams) => {
-    const navigate = useNavigate();
+export const ProtectedRoute = ({children}: ProtectedRouteParams) => {
     console.log('privateRoute')
     const { highestRank } = useAppSelector(state => state.image);
 
-    if (!highestRank) {
-        navigate('/');
-    }
-    return children;
+    return highestRank ? children : <Navigate to='/'/>;
 }

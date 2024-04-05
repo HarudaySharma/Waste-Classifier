@@ -9,6 +9,7 @@
 }
 
 .Main {
+
     // display: grid;
     // grid-template-rows: auto auto;
     // justify-content: center;
@@ -69,11 +70,12 @@
             grid-area: c2;
         }
 
-        .details {
+        .image-info {
             justify-self: center;
             grid-area: c3;
             display: flex;
             flex-flow: column wrap;
+            margin-right: 12px;
             justify-content: space-evenly;
 
             &__heading {
@@ -104,7 +106,18 @@
                     font-size: var(--font-md);
                     font-weight: 300;
                 }
+
             }
+            & .know-more-btn {
+                @extend %button;
+                
+                font-family: u.$font-jost;
+                font-weight: bolder;
+                text-transform: uppercase;
+                align-self: flex-end;
+            }
+
+
         }
 
     }

@@ -33,13 +33,11 @@ const router = createBrowserRouter([
             {
                 path: "/main",
                 element: <MainPage />,
-                children: [
-                    {
-                        path: 'imagedetails',
-                        element: <ProtectedRoute> <ImageDetails/> </ProtectedRoute>
-                    }
-                ]
             },
+            {
+                path: '/main/imagedetails',
+                element: <ProtectedRoute> <ImageDetails /> </ProtectedRoute>
+            }
         ]
     }
 

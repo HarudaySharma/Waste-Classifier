@@ -1,31 +1,13 @@
 import { ImageSliceInitial } from "../../redux/slices/imageSlice";
 import { useAppSelector } from "../../hooks";
 import ReactLoading from 'react-loading'
-import RangeComponent from "../ui/Range/RangeComponent";
 import Button from "../ui/Button/Button";
 import { useNavigate } from "react-router-dom";
+import HorizontalBars from "../ui/Range/HorizontalBars";
 
 const ImageInfo = () => {
     const navigate = useNavigate();
-    const { classes, loading, error } = useAppSelector(state => state.image) as ImageSliceInitial;
-
-    const ClassRanges = () => {
-        return (
-            <ul>
-                {
-                    classes.map(obj =>
-                        <li key={obj.class}>
-                            <span className='green bold'> {obj.class} </span>
-                            <RangeComponent
-                                rangeInPercent={+obj.score.toFixed(6)}
-                            />
-                            {obj.score.toFixed(6)}%
-                        </li>
-                    )
-                }
-            </ul>
-        )
-    }
+    const { classes, imageUrl, highestRank, loading, error } = useAppSelector(state => state.image) as ImageSliceInitial;
 
     return (
         loading ? <ReactLoading className="loader" />
@@ -33,17 +15,17 @@ const ImageInfo = () => {
                 <pre> {error} </pre>
                 :
                 // {styles.imageContainer}
-                <div className='details'>
-                    <h1 className='details__heading'>
+                <div className='image-info'>
+                    <h1 className='image-info__heading'>
                         <span className='green bold'>Image</span> Details
                     </h1>
-                    <ClassRanges />
-                    <Button onClickHandler={() => {
-                        console.log('clicked');
-                        navigate('imagedetails');
+                    {Boolean(classes.length) &&
+                        <HorizontalBars dataset={classes} />
+                    }
+                    <Button className='know-more-btn' onClickHandler={() => {
+                        navigate('/main/imagedetails', {state: {imageUrl, highestRank}});
                     }} >
-
-                        Know More
+                        Know More !
                     </Button>
                 </div>
     )
