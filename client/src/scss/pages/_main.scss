@@ -28,13 +28,13 @@
     // }
     //
     &__wrapper {
-        display: grid;
+        // display: grid;
         justify-items: center;
         align-items: center;
         justify-self: center;
-        grid-template-rows: var(--main-page-grid-template-rows);
-        grid-template-columns: var(--main-page-grid-template-columns);
-        grid-template-areas: var(--main-page-grid-area);
+        display: flex;
+        justify-content: space-evenly;
+        gap: f.rem(12);
 
         .image-upload,
         .web-camera {
@@ -57,22 +57,20 @@
         }
 
         .image-upload {
+            align-self: center;
             width: fit-content;
-            grid-area: c1;
+            // grid-area: c1;
         }
 
         .web-camera {
             width: fit-content;
-            grid-area: c1;
+            // grid-area: c1;
         }
 
-        .waste-img {
-            grid-area: c2;
-        }
 
         .image-info {
+
             justify-self: center;
-            grid-area: c3;
             display: flex;
             flex-flow: column wrap;
             margin-right: 12px;
@@ -90,31 +88,39 @@
             }
 
             &__matter {
-                border-right: f.rem(4) solid var(--color-green);
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-between;
+                gap: f.rem(154);
+                // border-right: f.rem(4) solid var(--color-green);
+                padding: f.rem(23);
                 margin-right: f.rem(18);
                 padding-right: f.rem(4);
                 font-family: u.$font-poppins;
 
-                &__heading {
-                    letter-spacing: f.rem(2);
-                    font-size: var(--font-lg);
-                    font-weight: 500;
+                & .waste-img {
+                    width: f.rem(256);
+                    height: f.rem(256);
+                    align-self: center;
+                    border-radius: f.rem(24);
+                    outline: f.rem(2) solid white;
+                    outline-offset: f.rem(6);
+                    margin-bottom: f.rem(2);
                 }
 
-                &__para {
-                    letter-spacing: f.rem(2);
-                    font-size: var(--font-md);
-                    font-weight: 300;
-                }
+                &__chart {
+                    justify-self: flex-end;
+                    display: flex;
+                    flex-flow: column wrap;
 
-            }
-            & .know-more-btn {
-                @extend %button;
-                
-                font-family: u.$font-jost;
-                font-weight: bolder;
-                text-transform: uppercase;
-                align-self: flex-end;
+                    & .know-more-btn {
+                        @extend %button;
+                        font-family: u.$font-jost;
+                        font-weight: bolder;
+                        text-transform: uppercase;
+                        align-self: flex-end;
+                    }
+                }
             }
 
 

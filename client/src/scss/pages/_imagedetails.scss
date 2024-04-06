@@ -49,11 +49,18 @@
             text-transform: uppercase;
         }
 
-        &__para {
+        &__main {
             font-size: var(--font-md);
             font-weight: 300;
             max-width: min(92vw, f.rem(950));
-            text-align: justify;
+            & p strong {
+                font-size: var(--font-lg);
+                font-weight: 700;
+            }
+            & li strong {
+                color: var(--color-green);
+                font-weight: 700;
+            }
         }
     }
     @include u.breakpoint-up(medium) {
@@ -67,6 +74,9 @@
         &__matter {
             &__image {
                 flex-basis: f.rem(321);
+            }
+            &__main {
+            text-align: justify;
             }
         }
     }

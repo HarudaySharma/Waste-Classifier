@@ -15,7 +15,7 @@ const valueFormatter = (value: number | null) => `${(value! * 100).toFixed(2)}%`
 
 export default function HorizontalBars({ dataset }: { dataset: Prediction[] }) {
     return (
-        Boolean(dataset) &&
+        Boolean(dataset.length) &&
         <BarChart
             dataset={dataset}
             yAxis={[{ scaleType: 'band', dataKey: 'class' }]}

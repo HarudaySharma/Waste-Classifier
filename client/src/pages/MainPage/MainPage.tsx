@@ -12,36 +12,31 @@ function MainPage() {
     const { loading, imageUrl } = useAppSelector(state => state.image);
 
     useEffect(() => {
-        const root = document.documentElement;
+        /* const root = document.documentElement;
         root.style.setProperty(
             "--main-page-grid-template-columns", "1fr")
         root.style.setProperty(
             "--main-page-grid-template-rows", "1fr")
         root.style.setProperty(
-            "--main-page-grid-area", `"c1"`)
+            "--main-page-grid-area", `"c1"`) */
     }, []);
 
     useEffect(() => {
         if (!loading && !imageUrl)
             return;
-        const root = document.documentElement;
+        /* const root = document.documentElement;
         root.style.setProperty(
             "--main-page-grid-template-columns", "1fr 1fr")
         root.style.setProperty(
             "--main-page-grid-template-rows", "1fr 1fr")
         root.style.setProperty(
-            "--main-page-grid-area", `"c2 c3" "c1 c3"`)
+            "--main-page-grid-area", `"c2 c3" "c1 c3"`) */
     }, [loading, imageUrl]);
 
     return (
         <main id='main_container' className="Main__wrapper">
             {type === 'upload' && <ImageUpload />}
             {type === 'scan' && <CustomWebCam />}
-            {
-                !imageUrl && loading
-                    ? <ReactLoading type="bars" className="loader" />
-                    : <img className='waste-img' src={imageUrl} />
-            }
             {imageUrl && <ImageInfo />}
         </main>
     )
