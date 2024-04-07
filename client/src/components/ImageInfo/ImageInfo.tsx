@@ -12,38 +12,24 @@ const ImageInfo = () => {
 
     return (
         <div className='image-info'>
-            {
-                !imageUrl ?
-                    loading
-                        ? <ReactLoading type="bars" className="loader" />
-                        : <img className='waste-img' src={imageUrl} />
-                    :
-                    loading ?
-                        <ReactLoading
-                            className="loader"
-                        />
-                        : error ?
-                            <DisplayError
-                                errorMessage="error connecting to server"
-                            />
-                            :
-                            <>
-                                <h1 className='image-info__heading'>
-                                    <span className='green bold'>Image</span> Details
-                                </h1>
-                                <div className="image-info__matter">
-                                    <img className='waste-img' src={imageUrl} />
-                                    <div className='image-info__matter__chart'>
-                                        <HorizontalBars dataset={classes} />
-                                        <Button className='know-more-btn' onClickHandler={() => {
-                                            navigate('/main/imagedetails', { state: { imageUrl, highestRank } });
-                                        }} >
-                                            Know More !
-                                        </Button>
-                                    </div>
-                                </div>
-                            </>
+            <h1 className='image-info__heading'>
+                <span className='green bold'>Image</span> Details
+            </h1>
+            <div className="image-info__matter">
+            {imageUrl && <img className='waste-img' src={imageUrl} />}
+            {loading && <ReactLoading type="bars" className="loader" />}
+            {error && <DisplayError errorMessage="error connecting to server" />}
+            {!loading && !error &&
+                        <div className='image-info__matter__chart'>
+                            <HorizontalBars dataset={classes} />
+                            <Button className='know-more-btn' onClickHandler={() => {
+                                navigate('/main/imagedetails', { state: { imageUrl, highestRank } });
+                            }} >
+                                Know More !
+                            </Button>
+                        </div>
             }
+            </div>
         </div>
     )
 }

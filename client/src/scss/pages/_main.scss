@@ -2,129 +2,158 @@
 @use '../utils/functions' as f;
 @use '../components/button';
 
-:root {
-    --main-page-grid-template-columns: 1fr;
-    --main-page-grid-template-rows: 1fr;
-    --main-page-grid-area: "c1";
-}
-
 .Main {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    gap: f.rem(24);
 
-    // display: grid;
-    // grid-template-rows: auto auto;
-    // justify-content: center;
-    // gap: f.em(64);
-    //
-    // @include u.breakpoint-up(medium) {
-    //     gap: f.em(128);
-    // }
-    //
-    // @include u.breakpoint-up(large) {
-    //     display: flex;
-    //     gap: 0;
-    //     flex-flow: column wrap;
-    //     justify-content: space-between;
-    //     height: fit-content;
-    // }
-    //
-    &__wrapper {
-        // display: grid;
-        justify-items: center;
-        align-items: center;
-        justify-self: center;
-        display: flex;
-        justify-content: space-evenly;
-        gap: f.rem(12);
+    .image-upload,
+    .web-camera {
+        .change-btn {
+            text-transform: uppercase;
+            letter-spacing: f.rem(1);
+            @extend %button;
 
-        .image-upload,
-        .web-camera {
-            .change-btn {
-                text-transform: uppercase;
-                letter-spacing: f.rem(1);
-                @extend %button;
+            img {
+                width: f.rem(34);
+                height: f.rem(28);
+                border: none;
 
-                img {
-                    width: f.rem(34);
-                    height: f.rem(28);
-                    border: none;
-
-                    &:hover span {
-                        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-                        /* White shadow on hover for the image */
-                    }
+                &:hover span {
+                    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+                    /* White shadow on hover for the image */
                 }
             }
         }
+    }
 
-        .image-upload {
-            align-self: center;
+    .image-upload {
+        margin-inline: auto;
+        width: fit-content;
+    }
+
+    .web-camera {
+        margin-inline: auto;
+        width: fit-content;
+    }
+
+    .image-info {
+        // border-top: f.rem(4) solid var(--color-green);
+        padding-top: f.rem(12);
+        justify-self: center;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-evenly;
+
+        &__heading {
+            text-transform: uppercase;
             width: fit-content;
-            // grid-area: c1;
+            margin-inline: auto;
+            font-weight: 300;
+            font-family: u.$font-jost;
+            font-size: var(--font-xl);
+            margin-bottom: f.rem(24);
+            letter-spacing: f.rem(2);
         }
 
-        .web-camera {
-            width: fit-content;
-            // grid-area: c1;
-        }
-
-
-        .image-info {
-
-            justify-self: center;
+        &__matter {
             display: flex;
             flex-flow: column wrap;
-            margin-right: 12px;
-            justify-content: space-evenly;
+            justify-content: space-between;
+            align-content: center;
+            gap: f.rem(22);
+            margin-inline: f.rem(12);
+            padding-right: f.rem(4);
+            font-family: u.$font-poppins;
 
-            &__heading {
-                text-transform: uppercase;
-                width: fit-content;
-                margin-inline: auto;
-                font-weight: 300;
-                font-family: u.$font-jost;
-                font-size: var(--font-xl);
-                margin-bottom: f.rem(24);
-                letter-spacing: f.rem(2);
+            .loader {
+                align-self: center;
             }
 
-            &__matter {
+            .waste-img {
+                width: f.rem(256);
+                height: f.rem(256);
+                align-self: center;
+                border-radius: f.rem(24);
+                margin-bottom: f.rem(2);
+                flex-grow: 1;
+            }
+
+            &__chart {
                 display: flex;
+                align-self: center;
+                flex-flow: column wrap;
+
+                & .know-more-btn {
+                    @extend %button;
+                    font-family: u.$font-jost;
+                    font-weight: bolder;
+                    text-transform: uppercase;
+                    align-self: flex-end;
+                }
+            }
+        }
+    }
+
+    @include u.breakpoint-up(medium) {
+        .image-info {
+            width: 100%;
+
+            &__matter {
                 flex-flow: row wrap;
-                justify-content: space-between;
-                gap: f.rem(154);
-                // border-right: f.rem(4) solid var(--color-green);
-                padding: f.rem(23);
-                margin-right: f.rem(18);
-                padding-right: f.rem(4);
-                font-family: u.$font-poppins;
 
                 & .waste-img {
-                    width: f.rem(256);
-                    height: f.rem(256);
-                    align-self: center;
-                    border-radius: f.rem(24);
-                    outline: f.rem(2) solid white;
-                    outline-offset: f.rem(6);
-                    margin-bottom: f.rem(2);
+                    height: f.rem(276);
                 }
 
                 &__chart {
-                    justify-self: flex-end;
-                    display: flex;
-                    flex-flow: column wrap;
-
-                    & .know-more-btn {
-                        @extend %button;
-                        font-family: u.$font-jost;
-                        font-weight: bolder;
-                        text-transform: uppercase;
-                        align-self: flex-end;
-                    }
+                    flex-basis: 60%;
+                    flex-grow: 1;
                 }
             }
 
+        }
+    }
 
+    @include u.breakpoint-up(large) {
+        gap: 0;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+
+        .web-camera,
+        .image-upload {
+            align-self: center;
         }
 
+        .image-info {
+            border: none;
+            border-left: f.rem(4) solid var(--color-green);
+            flex-basis: 70%;
+
+            &__matter {
+                flex-flow: column no-wrap;
+                justify-content: center;
+
+                & .waste-img {
+                    height: f.rem(356);
+                }
+
+                &__chart {
+                    & .know-more-btn {
+                        align-self: flex-start;
+                    }
+                }
+            }
+        }
     }
+
+    @include u.breakpoint-down(large) {
+        .image-info {
+            border: none;
+            border-top: f.rem(4) solid var(--color-green);
+            // border-left: f.rem(4) solid var(--color-green);
+        }
+    }
+
 }

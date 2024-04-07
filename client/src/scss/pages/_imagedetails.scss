@@ -4,8 +4,7 @@
 .details {
     display: flex;
     flex-flow: column wrap;
-    width: fit-content;
-    margin: f.rem(2);
+    width: calc(100vw - f.rem(24));
     margin-inline: auto;
     justify-content: center;
     align-content: center;
@@ -30,53 +29,83 @@
         justify-self: center;
         align-items: center;
 
-        &__image {
-            outline: f.rem(2) solid white;
-            outline-offset: f.rem(6);
+        &__column1 {
+            display: flex;
+            width: fit-content;
+            flex-flow: column wrap;
+            justify-content: center;
+            gap: f.rem(12);
+            position: relative;
+
+            &__image {
+                outline-offset: f.rem(6);
+                outline: f.rem(2) solid white;
+                border-radius: f.rem(12);
+                flex-basis: f.rem(156);
+                max-width: f.rem(450);
+                flex-grow: 1;
+            }
+
+            &__heading {
+                font-size: var(--font-lg);
+                width: fit-content;
+                font-weight: 500;
+                text-align: center;
+            }
+
+            &__percentage {
+                width: fit-content;
+                font-size: var(--font-md);
+                text-transform: uppercase;
+                position: relative ;
+                top: -44px;
+            }
+        }
+
+        &__column2 {
+            border: f.rem(2) dashed var(--color-green);
             border-radius: f.rem(12);
-            flex-basis: f.rem(156);
-            flex-grow: 1;
-        }
-
-        &__heading { margin-top: f.rem(16);
-            font-size: var(--font-lg);
-            font-weight: 500;
-            text-align: center;
-        }
-
-        &__percentage {
-            font-size: var(--font-md);
-            text-transform: uppercase;
-        }
-
-        &__main {
+            padding: f.rem(12);
+            width: fit-content;
             font-size: var(--font-md);
             font-weight: 300;
-            max-width: min(92vw, f.rem(950));
+
+            h1,
+            h2,
+            h3,
+            h4,
+            p {
+                width: fit-content;
+            }
+
             & p strong {
                 font-size: var(--font-lg);
                 font-weight: 700;
+
             }
+
             & li strong {
                 color: var(--color-green);
                 font-weight: 700;
             }
         }
     }
-    @include u.breakpoint-up(medium) {
-        &__matter {
-            &__image {
-                flex-basis: f.rem(256);
-            }
-        }
-    }
+
     @include u.breakpoint-up(large) {
         &__matter {
-            &__image {
-                flex-basis: f.rem(321);
+            flex-flow: row wrap;
+            gap: f.rem(24);
+            justify-content: space-around;
+
+            &__column1 {
+                flex-grow: 2;
+                align-content: center;
             }
-            &__main {
-            text-align: justify;
+
+            &__column2 {
+                flex-basis: 50%;
+                flex-grow: 1;
+                text-align: justify;
             }
         }
     }

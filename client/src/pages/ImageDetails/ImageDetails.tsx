@@ -19,18 +19,20 @@ export const ImageDetails = () => {
             </h1>
             {/*styles.info*/}
             <div className='details__matter'>
-                <img src={imageUrl} alt='waste image' className='details__matter__image' />
+                <div className='details__matter__column1'>
+                <img src={imageUrl} alt='waste image' className='details__matter__column1__image' />
                 {/*styles.heading*/}
-                <h3 title='waste type' aria-label='waste type'  className='details__matter__heading'>
+                <h3 title='waste type' aria-label='waste type'  className='details__matter__column1__heading'>
                     {highestRank.class.replace(/-/g, ' ')}
                 </h3>
-                <h4 className='details__matter__percentage'>
+                <h4 className='details__matter__column1__percentage'>
                     Match Percentage <span className='bold green'>{+highestRank.score.toFixed(2) * 100}%</span>
                 </h4>
+                </div>
                 {/*styles.information*/}
                 <ReactMarkdown
                     children={highestRank.about}
-                    className='details__matter__main'
+                    className='details__matter__column2'
                 />
             </div>
         </main>

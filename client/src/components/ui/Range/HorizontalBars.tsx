@@ -1,13 +1,13 @@
-import { BarChart } from '@mui/x-charts/BarChart';
+import { BarChart, BarChartProps } from '@mui/x-charts/BarChart';
 import { Prediction } from '../../../types';
+import barCharSx from '../../../utils/barChartSx';
 
-const chartSetting = {
+const chartSetting: Partial<BarChartProps> = {
     xAxis: [
         {
-            label: 'prediction' ,
+            label: 'prediction',
         },
     ],
-    width: 600,
     height: 400,
 };
 
@@ -17,26 +17,15 @@ export default function HorizontalBars({ dataset }: { dataset: Prediction[] }) {
     return (
         Boolean(dataset.length) &&
         <BarChart
-            dataset={dataset}
-            yAxis={[{ scaleType: 'band', dataKey: 'class' }]}
+            dataset={dataset.map(d => ({
+                'label': d.class,
+                'score': d.score,
+            }))}
+            yAxis={[{ scaleType: 'band', dataKey: 'label' }]}
             series={[{ dataKey: 'score', label: 'WasteType', valueFormatter }]}
             layout="horizontal"
             {...chartSetting}
-            sx={{
-                '*': {
-                    stroke: 'rgb(255, 255, 255) !important',
-                },
-                '& .MuiChartsAxis-label , & .MuiChartsAxis-root, \
-                & .MuiChartsLegend-root text, \
-               & .MuiChartsAxis-tickContainer text': {
-                    fill: 'rgb(255, 255, 255) !important',
-                    color: 'white'
-                },
-               '& .MuiChartsAxis-tickContainer .MuiChartsAxis-tick"': {
-                    stroke: 'rgb(255, 255, 255) !important',
-               }
-
-            }}
+            sx={barCharSx}
         />
     );
 }
