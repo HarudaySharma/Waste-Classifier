@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, LegacyRef } from 'react'
 
 interface ButtonProps {
     className?: string;
@@ -10,11 +10,13 @@ interface ButtonProps {
     aria_labelledby?: string;
     aria_label?: string;
     children?: React.ReactNode;
+    btnRef?: React.MutableRefObject<HTMLButtonElement | undefined>
 }
 
-const Button: FC<ButtonProps> = ({ className, id, children, onClickHandler , aria_expanded, aria_labelledby, aria_label}) => {
+const Button: FC<ButtonProps> = ({ btnRef, className, id, children, onClickHandler, aria_expanded, aria_labelledby, aria_label }) => {
     return (
         <button
+            ref={btnRef as LegacyRef<HTMLButtonElement>}
             id={id}
             className={className}
             aria-expanded={aria_expanded}

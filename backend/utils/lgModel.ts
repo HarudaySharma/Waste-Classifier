@@ -1,5 +1,5 @@
 import TeachableMachine from "@sashido/teachablemachine-node";
-import { Model } from "../types/MLModelTypes";
+import { Model } from "../types";
 
 var model: Model;
 export async function loadModel():Promise<Model> {
@@ -7,7 +7,7 @@ export async function loadModel():Promise<Model> {
         console.log("loading Model...");
         try {
             model = new TeachableMachine({
-                modelUrl: process.env.TEACHABLEMACHINE_URL
+                modelUrl: process.env.TEACHABLEMACHINE_URL_MAIN
             });
             resolve(model);
             return;

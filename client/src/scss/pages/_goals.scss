@@ -6,20 +6,20 @@ $EGoal2: url('/src/assets/E-Goal-11-1024x1024.png');
 $EGoal3: url('/src/assets/E-Goal-12-1024x1024.png');
 
 .goals {
-    display: grid;
-    grid-template-rows: auto auto;
-    justify-content: center;
-    gap: f.em(64);
-
-    @include u.breakpoint-up(medium) {
-        gap: f.em(128);
-    }
-
-    @include u.breakpoint-up(large) {
-        display: flex;
-        flex-flow: column wrap;
-    }
-
+    // display: grid;
+    // grid-template-rows: auto auto;
+    // justify-content: center;
+    // gap: f.em(64);
+    //
+    // @include u.breakpoint-up(medium) {
+    //     gap: f.em(128);
+    // }
+    //
+    // @include u.breakpoint-up(large) {
+    //     display: flex;
+    //     flex-flow: column wrap;
+    // }
+    //
     &__main {
         width: calc(100vw - f.rem(24));
         justify-self: center;
