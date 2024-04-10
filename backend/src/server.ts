@@ -1,22 +1,24 @@
 import express, { Application } from 'express';
 import {config} from 'dotenv';
-import initialRoute from "./routes/initial.route.js"
-import { loadModel } from './utils/lgModel.js';
+import wasteClassifyRoute from "./routes/wasteClassify.route.js"
 import cors from 'cors';
 
 config();
 
 const app: Application = express();
-const PORT: string = process.env.PORT as string | "3000";
+const PORT: string = process.env.PORT as string;
 
 app.use(cors());
 app.use(express.json());
 
-app.use('/api' , initialRoute);
+app.use('/api' , wasteClassifyRoute);
 
-app.listen(PORT, () => { 
+app.get('/', (req, res) => {
+    res.json({message: "server is running"});
+})
+
+app.listen(PORT, async() => { 
     console.log(`server listening on PORT:${PORT}`);
-    loadModel();
 })
 
 

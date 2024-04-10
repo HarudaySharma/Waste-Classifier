@@ -1,7 +1,6 @@
 import SashiDoTeachableMachine from "@sashido/teachablemachine-node";
-
-var model: SashiDoTeachableMachine;
-export async function loadModel(): Promise<SashiDoTeachableMachine> {
+var model;
+export async function loadModel() {
     return new Promise(async (resolve, reject) => {
         console.log("loading Model...");
         try {
@@ -17,6 +16,6 @@ export async function loadModel(): Promise<SashiDoTeachableMachine> {
         }
     });
 }
-export function getModel(): SashiDoTeachableMachine {
+export function getModel() {
     return model;
 }

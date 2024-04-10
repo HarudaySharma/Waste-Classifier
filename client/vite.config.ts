@@ -16,7 +16,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: "http://localhost:3000",
+                target: "https://waste-classifier-server.vercel.app",
             },
         }
 
