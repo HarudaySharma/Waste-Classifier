@@ -36,7 +36,7 @@ const useFetchImageDetails = (initialUrl?: string): useFetchImageDetailsType => 
                 abortController.current = new AbortController();
                 const signal = abortController.current.signal;
 
-                const res = await fetch('/api/', {
+                const res = await fetch('https://waste-classifier-server.vercel.app/api', {
                     method: 'POST',
                     signal,
                     headers: {

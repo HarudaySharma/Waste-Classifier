@@ -8,7 +8,7 @@ type FetchImageInfoParams = {
 
 const fillImageDetails = async ({ imageURL, setImageObj }: FetchImageInfoParams): Promise<void> => {
     try {
-        const res = await fetch('/api/', {
+        const res = await fetch('https://waste-classifier-server.vercel.app/api/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

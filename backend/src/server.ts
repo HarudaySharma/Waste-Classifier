@@ -8,7 +8,10 @@ config();
 const app: Application = express();
 const PORT: string = process.env.PORT as string;
 
-app.use(cors());
+app.use(cors({
+    origin: "https://waste-classifier-client.vercel.app"
+}));
+
 app.use(express.json());
 
 app.use('/api' , wasteClassifyRoute);
