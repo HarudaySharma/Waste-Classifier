@@ -14,9 +14,10 @@
     gap: f.rem(16);
     font-size: f.rem(24);
     position: relative;
+    box-shadow: 0px 0px 12px var(--color-grey);
 
     &:hover {
-        box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
+        box-shadow: 0px 0px 24px var(--color-grey);
         /* Glow effect on hover */
     }
 
