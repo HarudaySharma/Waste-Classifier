@@ -9,15 +9,13 @@ import { useAppDispatch } from '../../hooks';
 import { resetImageState } from '../../redux/slices/imageSlice';
 import { useSearchParams } from 'react-router-dom';
 
-const videoConstraints = {
-    width: 420,
-    height: 420,
-    facingMode: "user"
+const videoConstraints: MediaTrackConstraints = {
+    facingMode: "user",
 };
 
 export const CustomWebCam = () => {
     const dispatch = useAppDispatch();
-    const cameraRef = useRef(null);
+    const cameraRef = useRef<Webcam>(null);
     const [, setURLSearchParams] = useSearchParams();
     const [tmpImg, setTmpImg] = useState<string | null>(null);
     const [url, setImage, uploadTaskRef] = useUploadImage();
@@ -39,7 +37,7 @@ export const CustomWebCam = () => {
 
 
     const capture = React.useCallback(() => {
-        const image = cameraRef?.current?.getScreenshot({ width: 420, height: 420 });
+        const image = cameraRef?.current?.getScreenshot();
         if (image) {
             setTmpImg(image);
         }
@@ -72,8 +70,6 @@ export const CustomWebCam = () => {
                         ref={cameraRef}
                         screenshotFormat='image/jpeg'
                         className='web-camera__camera'
-                        height={420}
-                        width={420}
                     />
             }
 
@@ -82,7 +78,7 @@ export const CustomWebCam = () => {
                     className='web-camera__camera__btn1'
                     onClickHandler={tmpImg ? reCapture : capture}
                 >
-                    {tmpImg ? "RECAPTURE" : "CAPTURE"}
+                    {tmpImg ? "ReCapture" : "Capture"}
                 </Button>
                 {
                     tmpImg &&

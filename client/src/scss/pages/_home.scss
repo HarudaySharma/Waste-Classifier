@@ -63,6 +63,7 @@
                 &__upload,
                 &__scan {
                     @extend %button;
+                    box-shadow: none;
                 }
 
 
