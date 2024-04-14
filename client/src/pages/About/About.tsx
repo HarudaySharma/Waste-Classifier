@@ -24,33 +24,25 @@ function About() {
                     </p>
                 </div>
                 <footer className='about__main__matter__column2'>
-                    <div className='about__main__matter__column2__column1'>
-                        <h3>TEAM</h3>
-                        <ul>
-                            <li>Haruday</li>
-                            <li>Harshit</li>
-                            <li>Hritvik</li>
-                            <li>Himanshu</li>
-                        </ul>
-                    </div>
-                    <div className='about__main__matter__column2__column2'>
-                        <h3>E-MAIL</h3>
-                        <ul>
-                            <li>1169@gmail.com</li>
-                            <li>1168@gmail.com</li>
-                            <li>1174@gmail.com</li>
-                            <li>1172@gmail.com</li>
-                        </ul>
-                    </div>
-                    <div className='about__main__matter__column2__column3'>
-                        <h3>CONTACT</h3>
-                        <ul>
-                            <li>1234</li>
-                            <li>5689</li>
-                            <li>1026</li>
-                            <li>4529</li>
-                        </ul>
-                    </div>
+                    <h3 className="bold green">TEAM</h3>
+                    <ul>
+                        <li>
+                            <div className="member-name">Himanshu</div>
+                            <div className="member-email">himanshu1172.be22@chitkarauniversity.edu.in</div>
+                        </li>
+                        <li>
+                            <div className="member-name">Haruday</div>
+                            <div className="member-email">haruday1169.be22@chitkarauniversity.edu.in</div>
+                        </li>
+                        <li>
+                            <div className="member-name">Harshit</div>
+                            <div className="member-email">harshit1168.be22@chitkarauniversity.edu.in</div>
+                        </li>
+                        <li>
+                            <div className="member-name">Hritvik</div>
+                            <div className="member-email">hritvik1174.be22@chitkarauniversity.edu.in</div>
+                        </li>
+                    </ul>
                 </footer>
             </section>
         </main>

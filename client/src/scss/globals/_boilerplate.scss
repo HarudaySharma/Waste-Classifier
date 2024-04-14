@@ -25,9 +25,10 @@ body {
     display: grid;
     grid-template-rows: auto auto;
     justify-content: center;
-    gap: f.rem(140);
+    row-gap: f.rem(52);
 
-    @include u.breakpoint-up(large) {
+    @include u.breakpoint-up(medium) {
+        gap: f.rem(140);
         display: flex;
         flex-flow: column wrap;
     }
