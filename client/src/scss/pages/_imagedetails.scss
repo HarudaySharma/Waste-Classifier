@@ -33,7 +33,7 @@
             display: flex;
             width: fit-content;
             flex-flow: column wrap;
-            justify-content: center;
+            align-items: center;
             gap: f.rem(12);
             position: relative;
 
@@ -42,7 +42,8 @@
                 outline: f.rem(2) solid white;
                 border-radius: f.rem(12);
                 flex-basis: f.rem(156);
-                max-width: f.rem(450);
+                max-width: f.rem(272);
+                max-height: f.rem(372);
                 flex-grow: 1;
             }
 
@@ -57,7 +58,7 @@
                 width: fit-content;
                 font-size: var(--font-md);
                 text-transform: uppercase;
-                position: relative ;
+                position: relative;
                 top: -44px;
             }
         }
@@ -100,6 +101,10 @@
             &__column1 {
                 flex-grow: 2;
                 align-content: center;
+
+                &__image {
+                    max-width: f.rem(450);
+                }
             }
 
             &__column2 {

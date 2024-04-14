@@ -2,21 +2,6 @@
 @use '../utils/functions' as f;
 
 .about {
-    // display: grid;
-    // grid-template-rows: auto auto;
-    // justify-content: center;
-    // gap: f.em(64);
-    //
-    // @include u.breakpoint-up(medium) {
-    //     gap: f.em(128);
-    // }
-    //
-    // @include u.breakpoint-up(large) {
-    //     display: flex;
-    //     gap: 0;
-    //     flex-flow: column wrap;
-    // }
-
     &__main {
         width: calc(100vw - f.rem(24));
 
@@ -57,47 +42,43 @@
 
             &__column2 {
                 display: flex;
-                gap: f.rem(16);
+                flex-flow: column wrap;
                 justify-content: space-evenly;
+                align-items: center;
 
-                div {
+                h3 {
+                    letter-spacing: f.rem(2);
+                }
+
+                &>ul {
                     display: flex;
                     flex-flow: column wrap;
-                    justify-content: center;
-                    gap: f.rem(12);
+                    align-content: center;
+                    row-gap: f.rem(12);
                     letter-spacing: f.rem(2);
                     font-family: u.$font-poppins;
+                    font-size: var(--font-sm);
+                    list-style: none;
+                    padding: 0;
 
-                    h3 {
-                        font-size: calc(var(--font-md) + f.rem(3));
-                        margin-inline: auto;
-                        font-weight: 700;
-                        text-transform: uppercase;
-                    }
+                    li {
+                        display: flex;
+                        flex-flow: column wrap;
+                        justify-content: center;
+                        align-items: center;
+                        gap: f.rem(3);
 
-                    ul {
-                        font-size: var(--font-sm);
-                        text-align: center;
-                        font-weight: 300;
-
-                        li {
-                            list-style-type: none;
-                            margin-bottom: f.rem(12);
+                        &>div {
+                            width: fit-content;
                         }
-                    }
-                }
 
-                &__column1 {
-                    ul {
-                        text-transform: uppercase;
-                    }
-                }
+                        & .member-name {
+                            text-transform: uppercase;
+                            font-weight: bold;
+                        }
 
-                &__column3 {
-                    ul {
-                        li {
-                            font-weight: 700;
-                            letter-spacing: f.rem(4);
+                        & .member-email {
+                            font-style: italic;
                         }
                     }
                 }
@@ -111,8 +92,20 @@
 
                 &__column1 {
                     padding-bottom: f.rem(66);
+
                     p {
                         padding-inline: f.rem(7);
+                    }
+                }
+
+                &__column2 {
+                    &>ul {
+                        li {
+                            flex-flow: row wrap;
+                            column-gap: f.rem(32);
+                            justify-content: space-between;
+                            align-items: flex-start;
+                        }
                     }
                 }
             }
@@ -134,7 +127,7 @@
             &__matter {
                 padding-right: f.rem(44);
                 flex-basis: 50%;
-                gap: f.rem(54);
+                row-gap: f.rem(54);
 
                 &__column1 {
                     padding-bottom: f.rem(86);

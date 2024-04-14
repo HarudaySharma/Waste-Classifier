@@ -6,7 +6,6 @@ type ProtectedRouteParams = {
 }
 
 export const ProtectedRoute = ({children}: ProtectedRouteParams) => {
-    console.log('privateRoute')
     const { highestRank } = useAppSelector(state => state.image);
 
     return highestRank ? children : <Navigate to='/'/>;

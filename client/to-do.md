@@ -1,5 +1,5 @@
--[-] modify the request Object.
--[ ] create full image details route.
--[ ] show classes percentage in the MainPage
+-[x] modify the request Object.
+-[x] create full image details route.
+-[x] show classes percentage in the MainPage
 
 

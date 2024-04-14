@@ -11,7 +11,6 @@ import { ImageResponseObj } from "../types";
     *
     * 
 */
-
 type useFetchImageDetailsType = [
     React.Dispatch<React.SetStateAction<string | undefined>>,
     React.MutableRefObject<AbortController | undefined>
