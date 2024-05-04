@@ -15,11 +15,11 @@ const ChangeButton = ({ switchTo }: ChangeButtonProps) => {
     }
 
     const ButtonContent = () => {
-        let src = scanIcon, alt = "scanIcon", text = "SCAN";
+        let src = uploadIcon, alt = "uploadIcon", text = "UPLOAD";
         if (switchTo === 'scan') {
-            src = uploadIcon;
-            alt = "uploadIcon";
-            text = "UPLOAD";
+            src = scanIcon;
+            alt = "scanIcon";
+            text = "SCAN";
 
         }
         return (

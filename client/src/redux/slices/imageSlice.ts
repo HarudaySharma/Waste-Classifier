@@ -1,16 +1,18 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ImageResponseObj, HighestRank } from "../../types";
+import { ImageResponseObj1, HighestRank, ImageResponseObj2 } from "../../types";
 
-export interface ImageSliceInitial extends ImageResponseObj {
+export interface ImageSliceInitial extends ImageResponseObj1, ImageResponseObj2 {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     error?: any;
     /* eslint-enable @typescript-eslint/no-explicit-any */
     percentage?: number;
     loading?: boolean;
+    dataSource?: "OWN_MODEL" | "GEMINI";
 }
 
 const imageSliceInitial: ImageSliceInitial = {
     imageUrl: '',
+    information: '',
     classes: [],
     highestRank: {
         class: '',
@@ -30,15 +32,16 @@ const imageSlice = createSlice({
         imageProcessingStop: (state) => {
             state.loading = false;
         },
-        populateImage: (state, action: PayloadAction<ImageResponseObj>) => {
+        populateImageViaOwnClassification: (state, action: PayloadAction<ImageResponseObj1>) => {
             state.imageUrl = action.payload.imageUrl;
             state.classes = action.payload.classes;
             state.highestRank = action.payload.highestRank;
-            // const { imageUrl, classes,  } = action.payload;
-            // if (state.imageUrl == undefined)
-            //     state.imageUrl = imageUrl;
-            // state.wasteType = wasteType;
-            // state.info = info;
+            state.dataSource = "OWN_MODEL";
+        },
+        populateImageViaGemini: (state, action: PayloadAction<ImageResponseObj2>) => {
+            state.imageUrl = action.payload.imageUrl;
+            state.information = action.payload.information;
+            state.dataSource = "GEMINI";
         },
         setImageUrl: (state, action: PayloadAction<{ imageUrl: string | undefined }>) => {
             if (action.payload.imageUrl)
@@ -59,8 +62,28 @@ const imageSlice = createSlice({
             state.error = action.payload.error;
         },
         /* eslint-enable @typescript-eslint/no-explicit-any */
+        resetImageStatePartial: (state, action: PayloadAction<{ dataPart: boolean, imageUrl: boolean, dataSource: boolean }>) => {
+            const { dataPart, imageUrl, dataSource } = action.payload;
+            if (dataPart) {
+                state.information = '';
+                state.classes = [];
+                state.highestRank = {
+                    class: '',
+                    score: 0,
+                    about: '',
+                };
+            }
+            if (imageUrl) {
+                state.imageUrl = '';
+            }
+            if (dataSource) {
+                state.dataSource = undefined;
+            }
+        },
         resetImageState: (state) => {
             state.imageUrl = '';
+            state.dataSource = undefined;
+            state.information = '';
             state.classes = [];
             state.highestRank = {
                 class: '',
@@ -77,13 +100,13 @@ const imageSlice = createSlice({
 export default imageSlice.reducer;
 
 export const {
-    populateImage,
+    populateImageViaOwnClassification,
+    populateImageViaGemini,
     setImageUrl,
-    /* setImageInfo,
-    setImageType, */
     setImageUploadPercentage,
     setImageUploadError,
     imageProcessingStart,
     imageProcessingStop,
+    resetImageStatePartial,
     resetImageState,
 } = imageSlice.actions;

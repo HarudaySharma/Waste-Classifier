@@ -105,6 +105,8 @@
             }
 
             .waste-img {
+                max-width: f.rem(512);
+                max-height: f.rem(512);
                 width: f.rem(256);
                 height: f.rem(256);
                 align-self: center;
@@ -127,6 +129,31 @@
                     align-self: flex-end;
                 }
             }
+
+            &__information {
+                letter-spacing: f.rem(2);
+                border: f.rem(2) dashed var(--color-green);
+                border-radius: f.rem(12);
+                padding: f.rem(12);
+                flex-basis: 50%;
+                font-size: var(--font-md);
+                font-weight: 300;
+
+                h1,
+                h2,
+                h3,
+                h4,
+                p {
+                    width: fit-content;
+                }
+
+                & p strong {
+                    font-size: calc(var(--font-md) + 8px);
+                    font-weight: 700;
+                    color: var(--color-green);
+                }
+            }
+
         }
     }
 

@@ -2,6 +2,7 @@ import express, { Application } from 'express';
 import {config} from 'dotenv';
 import wasteClassifyRoute from "./routes/wasteClassify.route.js"
 import cors from 'cors';
+import startFirebaseAdmin from './utils/startFirebaseAdmin.js';
 
 config();
 
@@ -16,7 +17,7 @@ app.use(express.json());
 
 app.use('/api' , wasteClassifyRoute);
 
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
     res.json({message: "server is running"});
 })
 
@@ -24,4 +25,5 @@ app.listen(PORT, async() => {
     console.log(`server listening on PORT:${PORT}`);
 })
 
+startFirebaseAdmin();
 

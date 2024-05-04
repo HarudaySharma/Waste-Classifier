@@ -1,5 +1,5 @@
-import askGemini from "./geminiText.js";
-import generatePrompt from "./generatePrompt.js";
+import { askGemini } from "./gemini.js";
+import { generatePrompt } from "./generatePrompt.js";
 const createResponseObj = async ({ predictions, imageUrl }) => {
     const classes = predictions.map((obj) => {
         console.log(`${obj.class}: ${obj.score}`);
