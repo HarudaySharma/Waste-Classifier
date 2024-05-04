@@ -1,1 +1,3 @@
 .vercel
+secrets
+node_modules

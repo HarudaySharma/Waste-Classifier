@@ -22,13 +22,17 @@ export const classifyWasteImg = async (req: Request, res: Response) => {
             }
             const resObj: RESPONSEOBJ = await createResponseObj({ predictions, imageUrl });
             res.status(200).json(resObj);
+            console.log("image classification successfull");
+            console.log("response send");
         }
         catch (err) {
+            console.log("image classification unsuccessfull");
             console.log(err);
         }
     }
     catch (err) {
-        console.log("error in controller");
+        console.log("image classification unsuccessfull");
+        console.log("error in controller ____classifyWasteImg____");
         console.log(err);
         res.status(501).json({message: "INTERNAL SERVER ERROR"}); 
     }

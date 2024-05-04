@@ -1,6 +1,6 @@
 import { Prediction } from "@sashido/teachablemachine-node";
-import askGemini from "./geminiText.js";
-import generatePrompt from "./generatePrompt.js";
+import { askGemini } from "./gemini.js";
+import { generatePrompt } from "./generatePrompt.js";
 import { RESPONSEOBJ } from "../types/types.js";
 
 

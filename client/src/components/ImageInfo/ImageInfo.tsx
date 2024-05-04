@@ -2,6 +2,7 @@ import { useAppSelector } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import { ImageSliceInitial } from "../../redux/slices/imageSlice";
 
+import ReactMarkdown from 'react-markdown';
 import ReactLoading from 'react-loading'
 import HorizontalBars from "../ui/Range/HorizontalBars";
 import Button from "../ui/Button/Button";
@@ -11,7 +12,9 @@ const ImageInfo = () => {
     const navigate = useNavigate();
     const {
         classes,
+        information,
         imageUrl,
+        dataSource,
         highestRank,
         loading,
         error
@@ -29,8 +32,10 @@ const ImageInfo = () => {
     }
 
     const ShowError = () => {
-        if (error)
+        if (error){
+            console.log(error);
             return <DisplayError errorMessage="error connecting to server" />
+        }
     }
 
     const ShowGraph = () => {
@@ -48,6 +53,26 @@ const ImageInfo = () => {
         }
     }
 
+    const ShowInformation = () => {
+        if (!loading && !error) {
+            return (
+                <ReactMarkdown
+                    children={information}
+                    className='image-info__matter__information'
+                />
+            )
+        }
+    }
+
+    const ShowData = () => {
+        if(dataSource === 'GEMINI') {
+            return <ShowInformation/>
+        }
+        if(dataSource === 'OWN_MODEL') {
+            return <ShowGraph/>
+        }
+    }
+
     if (imageUrl) {
         return (
             <div className='image-info'>
@@ -58,7 +83,7 @@ const ImageInfo = () => {
                     <ShowImage />
                     <ShowLoading />
                     <ShowError />
-                    <ShowGraph />
+                    <ShowData/>
                 </div>
             </div>
         )

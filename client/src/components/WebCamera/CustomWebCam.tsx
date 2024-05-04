@@ -7,6 +7,7 @@ import useFetchImageDetails from '../../hooks/useFetchImageDetails';
 import { useAppDispatch } from '../../hooks';
 import { resetImageState } from '../../redux/slices/imageSlice';
 import ChangeButton from '../ChangeButton';
+import { DataEndpointSwitch } from '../DataEndpointSwitch';
 
 const videoConstraints: MediaTrackConstraints = {
     facingMode: "user",
@@ -17,7 +18,7 @@ const CustomWebCam = () => {
     const cameraRef = useRef<Webcam>(null);
     const [capturedImg, setTmpImg] = useState<string | null>(null);
     const [url, setImage, uploadTaskRef] = useUploadImage();
-    const [setImageUrl, abortController] = useFetchImageDetails(url);
+    const [setImageUrl, setRequestOption, abortController] = useFetchImageDetails(url);
 
     useEffect(() => {
         return () => {
@@ -29,8 +30,9 @@ const CustomWebCam = () => {
     }, [])
 
     useEffect(() => {
-        if (url)
+        if (url) {
             setImageUrl(url);
+        }
     }, [url, setImageUrl]);
 
 
@@ -93,6 +95,17 @@ const CustomWebCam = () => {
         }
     }
 
+    /*** handlers ****/
+    const endpointSwitchHandler = (checked: boolean) => {
+        if(checked) {
+            setRequestOption('OWN_MODEL');
+        }
+        else {
+            setRequestOption('GEMINI');
+        }
+    }
+
+
     return (
         <div className='web-camera'>
             <LiveCamera />
@@ -101,6 +114,7 @@ const CustomWebCam = () => {
                 <SendButton />
             </div>
             <ChangeButton switchTo='upload' />
+            <DataEndpointSwitch endpointSwitchHandler={endpointSwitchHandler}/>
         </div >
     )
 }

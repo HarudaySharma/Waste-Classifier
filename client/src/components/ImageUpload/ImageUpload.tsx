@@ -1,15 +1,19 @@
 import { useEffect } from "react";
+
 import useUploadImage from "../../hooks/useUploadImage";
 import useFetchImageDetails from "../../hooks/useFetchImageDetails";
+
 import { resetImageState } from "../../redux/slices/imageSlice";
 import { useAppDispatch } from "../../hooks";
+
 import DropContainer from "../ui/DropContainer/DropContainer";
 import ChangeButton from "../ChangeButton";
+import { DataEndpointSwitch } from "../DataEndpointSwitch";
 
 const ImageUpload = () => {
     const dispatch = useAppDispatch();
     const [url, setImage, uploadTaskRef] = useUploadImage();
-    const [setImageUrl, abortController] = useFetchImageDetails(url);
+    const [setImageUrl, setRequestOption, abortController] = useFetchImageDetails(url);
 
     useEffect(() => {
         return () => {
@@ -23,10 +27,19 @@ const ImageUpload = () => {
     }, []);
 
     useEffect(() => {
-        if (url)
+        if (url) {
             setImageUrl(url);
+        }
     }, [url, setImageUrl]);
 
+    const endpointSwitchHandler = (checked: boolean) => {
+        if(checked) {
+            setRequestOption('OWN_MODEL');
+        }
+        else {
+            setRequestOption('GEMINI');
+        }
+    }
 
     return (
         <div className="image-upload">
@@ -44,6 +57,7 @@ const ImageUpload = () => {
                 }}
             />
             <ChangeButton switchTo="scan" />
+            <DataEndpointSwitch endpointSwitchHandler={endpointSwitchHandler}/>
         </div>
     )
 }
