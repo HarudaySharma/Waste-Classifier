@@ -1,6 +1,7 @@
 @use '../utils' as u;
 @use '../utils/functions' as f;
 
+$BG: url('/src/assets/bg.png');
 
 html {
     box-sizing: border-box;
@@ -17,7 +18,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: u.$font-roboto;
-    background-color: var(--color-black);
+    background-image: $BG;
     color: var(--color-white);
 }
 

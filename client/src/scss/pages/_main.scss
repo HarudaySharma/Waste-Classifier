@@ -92,7 +92,7 @@
 
         &__matter {
             display: flex;
-            flex-flow: column wrap;
+            flex-flow: column nowrap;
             justify-content: space-between;
             align-content: center;
             gap: f.rem(22);

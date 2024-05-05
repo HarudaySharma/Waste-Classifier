@@ -115,18 +115,25 @@
             display: flex;
             flex-flow: row wrap;
             justify-content: space-between;
+            height: fit-content;
 
             &__img {
                 display: flex;
-                height: calc(100vh - f.rem(84));
-                flex-basis: 40%;
+                //height: calc(100vh - f.rem(84));
+                height: calc(100vh + f.rem(0));
+                width: 661px;
+                position: relative;
+                top: f.rem(-120);
                 flex-shrink: 2;
                 border-radius: 0 f.rem(1440) f.rem(1440) 0;
             }
 
             &__matter {
-                padding-right: f.rem(44);
+                margin-right: f.rem(26);
+                margin-top: f.rem(54);
+                padding-right: f.rem(54);
                 flex-basis: 50%;
+                align-self: flex-start;
                 row-gap: f.rem(54);
 
                 &__column1 {

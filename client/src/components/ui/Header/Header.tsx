@@ -1,5 +1,4 @@
 import logo from '../../../assets/logo.png'
-import icon from '../../../assets/address-book.png'
 import openIcon from "../../../assets/hamburger.svg"
 import closeIcon from "../../../assets/close.svg"
 import Button from "../Button/Button";
@@ -23,17 +22,17 @@ const Header = () => {
     }, []);
 
     const navOpenHandler = () => {
-            openMobileMenu({navMenuRef, openBtnRef, closeBtnRef});
+        openMobileMenu({ navMenuRef, openBtnRef, closeBtnRef });
     }
 
     const onCloseHandle = () => {
-        if(matchMediaRef.current?.matches)
-            closeMobileMenu({navMenuRef, openBtnRef, closeBtnRef});
+        if (matchMediaRef.current?.matches)
+            closeMobileMenu({ navMenuRef, openBtnRef, closeBtnRef });
     }
 
     return (
         <nav className='nav'>
-            <div className={`nav__logo`}>
+            <div className={`nav__logo`} onClick={() => navigate('/')}>
                 <img src={logo} alt="logo" />
             </div>
 
@@ -103,16 +102,6 @@ const Header = () => {
                         }}
                     >
                         <span>About Us</span>
-                    </Button>
-                    <Button
-                        className='nav__menu__buttons__button'
-                        onClickHandler={(e) => {
-                            e.preventDefault();
-                            onCloseHandle();
-                            navigate('/contact');
-                        }}
-                    >
-                        <img src={icon} alt="Contact Icon" className='nav__menu__buttons__button__icon' />
                     </Button>
                 </div>
             </div>
