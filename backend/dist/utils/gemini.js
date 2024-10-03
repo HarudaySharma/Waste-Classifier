@@ -5,7 +5,7 @@ config();
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 export async function askGemini(prompt) {
     // For text-only input, use the gemini-pro model
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL });
     try {
         const result = await model.generateContent(prompt);
         const response = result.response;
@@ -17,7 +17,7 @@ export async function askGemini(prompt) {
 }
 export async function askGeminiVision(prompt, imageUrl) {
     // For text-and-image input (multimodal), use the gemini-pro-vision model
-    const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
+    const model = genAI.getGenerativeModel({ model: process.env.GEMINI_VISION_MODEL });
     try {
         const imagePart = await imageUrlToGenerativePart(imageUrl);
         const result = await model.generateContent([prompt, imagePart]);
