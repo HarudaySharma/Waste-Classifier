@@ -12,11 +12,11 @@ import { ImageResponseObj1, ImageResponseObj2 } from "../types";
 
 /*
     *@params
-    *initialUrl: url of the image 
+    *initialUrl: url of the image
     *@return
     * imageUrl setter
     *
-    * 
+    *
 */
 type FetchImageOptions = "OWN_MODEL" | "GEMINI";
 
@@ -39,7 +39,7 @@ const useFetchImageDetails = (initialUrl?: string): useFetchImageDetailsType => 
         try {
             const endPoint = requestOption === 'OWN_MODEL' ? '/' : '/useGemini';
             console.log(requestOption);
-            const res = await fetch(`https://waste-classifier-server.vercel.app/api${endPoint}`, {
+            const res = await fetch(`api/${endPoint}`, {
                 method: 'POST',
                 signal: abortController.current?.signal,
                 headers: {

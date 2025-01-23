@@ -10,7 +10,7 @@ const app: Application = express();
 const PORT: string = process.env.PORT as string;
 
 app.use(cors({
-    origin: "https://waste-classifier-client.vercel.app"
+    origin: "*"
 }));
 
 app.use(express.json());
@@ -21,7 +21,7 @@ app.get('/', (_, res) => {
     res.json({message: "server is running"});
 })
 
-app.listen(PORT, async() => { 
+app.listen(PORT, async() => {
     console.log(`server listening on PORT:${PORT}`);
 })
 
